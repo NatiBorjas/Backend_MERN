@@ -50,14 +50,25 @@ class Contenedor {
                     prod.id = 1;
                     productos = [{...prod}];
                     await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
+                    
                     return productos[0].id
                 } else {
                     productos.push(prod);
                     await fs.promises.writeFile(this.archivo,JSON.stringify(productos));
                     
                     return productos
-                    // console.log([`Se ha agregado el producto ${JSON.stringify(prod.nombre)} con Id n°: ${JSON.stringify(prod.id)}`]);
                 }
+        } catch (error) {
+            console.log("Hubo un error:" + error);
+        }
+    }
+    
+    async update(id, obj) {
+        try {
+            const data = await fs.promises.readFile(this.archivo, 'utf-8');
+            let dataParse = JSON.parse(data)
+            let updateProducto = dataParse.map((e) => e.id == id ? e = {...e, ...obj} : e);
+            await fs.promises.writeFile(this.archivo, JSON.stringify(updateProducto));
         } catch (error) {
             console.log("Hubo un error:" + error);
         }
@@ -66,20 +77,19 @@ class Contenedor {
     async getById(id) {
         try {
             const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let productos = JSON.parse(data);
-            let dataParse = productos.find(x => x.id == id);
+            let dataParse = JSON.parse(data);
+            let prod = dataParse.find(x => x.id == id);
 
-            if(!prod) {
-                console.log(`No se encuentra el objeto con Id ${id}`)
+            if(prod.id == id) {
+                return prod;
             } else {
-                return dataParse
+                console.log(`No se encuentra el producto con ID: ${id}`)
             }
-            
         } catch (error) {
             console.log("No pudo realizarse la busqueda por el siguiente error:\n" + error)
         }
     }
-
+    
     async deleteById(id) {
         try {
             const data = await fs.promises.readFile(this.archivo, 'utf-8');
@@ -91,7 +101,7 @@ class Contenedor {
             } else {
                 productos = productos.filter(i => i.id !== prod.id);
                 await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
-                console.log(`Se ha eliminado el objeto con Id ${id}`);
+                return productos
             }
 
         } catch (error) {
@@ -99,26 +109,12 @@ class Contenedor {
         }
     }
 
-    async getById(id) {
-        try {
-            const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let productos = JSON.parse(data);
-            let prod = productos.find(x => x.id == id);
-
-            if(!prod) {
-                console.log(`No se encuentra el producto con ID: ${id}`)
-            } else {
-                return prod;
-            }
-        } catch (error) {
-            console.log("No pudo realizarse la busqueda por el siguiente error:\n" + error)
-        }
-    }
 }
 
 const productos = new Contenedor('productos');
 
 // PETICIONES // 
+// METODO GET ALL //
 router.get('/', async (req, res) => {
     let productosAll = await productos.getAll();
         if (!productosAll) {
@@ -129,27 +125,49 @@ router.get('/', async (req, res) => {
     }
 );
 
+// METODO GET BY ID //
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
-    const encontrado = await productos.getById();
-    console.log(encontrado)
-    if (encontrado == undefined) {
-        res.json({error: "Producto no encontrado"});
-    } else {
-        res.json(encontrado)
-    }
-
+    const encontrado = await productos.getById(id);
+        if (!encontrado) {
+            res.json({error: "Producto no encontrado"});
+        } else {
+            res.json(encontrado)
+        }
     }
 );
 
+// METODO SAVE//
 router.post('/', async (req,res) => {
+    const {body} = req;
+    await productos.save(body);
 
+    res.json({mensaje: "Se ha agregado el siguiente producto", producto: body})
 })
 
+// ACTUALIZAR UN PRODUCTO //
 router.put('/:id', async (req,res) => {
-    
+    const {id} = req.params
+    const {body} = req;
+
+    if (!id) {
+        res.json({error: "Producto no encontrado"});
+        
+    } else {
+        await productos.update(id, body);
+        res.json({mensaje: "Se ha actualizado correctamente el producto"});
+    }
+
 })
 
+// ELIMINAR UN PRODUCTO //
 router.delete('/:id', async (req,res) => {
-    
+    const {id} = req.params;
+    const encontrado = await productos.deleteById(id);
+
+    if (!encontrado) {
+        res.json({error: "Producto no encontrado"});
+    } else {
+        res.json({mensaje: "Se ha elliminado el producto correctamente."});
+    }
 })

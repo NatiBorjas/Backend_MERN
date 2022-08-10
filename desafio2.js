@@ -9,18 +9,18 @@ class Contenedor {
     async save(prod) {
         try {
             const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let productos = JSON.parse(data);
-            const indice = productos.map(i => i.id).sort();
+            let dataParse = JSON.parse(data);
+            const indice = dataParse.map(i => i.id).sort();
             prod.id = indice[indice.length -1]+1;
 
                 if (!prod.id) {
                     prod.id = 1;
-                    productos = [{...prod}];
-                    await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
+                    dataParse = [{...prod}];
+                    await fs.promises.writeFile(this.archivo, JSON.stringify(dataParse));
                     console.log([`Se ha agregado el producto ${JSON.stringify(prod.nombre)} con Id n°: ${JSON.stringify(prod.id)}`]);
                 } else {
-                    productos.push(prod);
-                    await fs.promises.writeFile(this.archivo,JSON.stringify(productos));
+                    dataParse.push(prod);
+                    await fs.promises.writeFile(this.archivo,JSON.stringify(dataParse));
                     console.log([`Se ha agregado el producto ${JSON.stringify(prod.nombre)} con Id n°: ${JSON.stringify(prod.id)}`]);
                 }
         } catch (error) {
@@ -121,4 +121,4 @@ const productos = new Contenedor("productos");
 // productos.save(prodInicial3);
 // productos.getById(1);
 // productos.deleteAll();
-// productos.deleteById(x);
+productos.deleteById(6);
