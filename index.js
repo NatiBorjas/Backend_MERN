@@ -1,5 +1,8 @@
 const fs = require('fs');
-// SERVIDOR //
+
+//------------------------------ 
+// SERVIDOR EXPRESS
+//------------------------------ 
 const express = require('express');
 const {Router} = express;
 const app = express();
@@ -16,14 +19,17 @@ app.use(express.urlencoded({extended: true}));
 app.use('/api/productos', router);
 app.use('/public', express.static(__dirname + '/public'));
 
-// MANEJO DE ERROR //
+//------------------------------ 
+// MANEJO DE ERROR EN SERVIDOR
+//------------------------------ 
 app.use(function(err,req,res,next) {
     console.log(err.stack);
     res.status(500).send('Somenthing broke');
 })
 
-
-// CLASE //
+//------------------------------ 
+// CLASE Y SUS METODOS
+//------------------------------ 
 class Contenedor {
     constructor(archivo){
         this.archivo = "./files/productos.json";
@@ -113,8 +119,11 @@ class Contenedor {
 
 const productos = new Contenedor('productos');
 
-// PETICIONES // 
-// METODO GET ALL //
+//------------------------------ 
+//    PETICIONES 
+//------------------------------ 
+
+// METODO GET ALL
 router.get('/', async (req, res) => {
     let productosAll = await productos.getAll();
         if (!productosAll) {
@@ -143,6 +152,7 @@ router.post('/', async (req,res) => {
     await productos.save(body);
 
     res.json({mensaje: "Se ha agregado el siguiente producto", producto: body})
+    console.log(body)
 })
 
 // ACTUALIZAR UN PRODUCTO //

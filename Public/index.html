@@ -4,12 +4,35 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <!-- Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+        <!-- Estilos -->        
+        <link rel="stylesheet" type="text/css" href="css/main.css">
+        <!-- Titulo -->
+        <title>Formulario de carga</title>
     </head>
     <body>
-        <form enctype="multipart/form-data" method="post" action="/upload">
-        <input type="file" name="myFile" />
-        <input type="submit" value="subir!" />
-        </form>
+        <h1>Carga de productos:</h1>
+            <div id="form-container">
+                <form method="post" action="/api/productos">
+                <fieldset>
+                    <label>Nombre del producto
+                        <input type="text" name="name" size="45" placeholder="Ingresa el nombre" id="name"/>
+                    </label>
+                    <label>Precio del producto
+                        <input type="text" name="price" pattern="[0-9]+" size="45" placeholder="Ingresa el precio" id="price"/>
+                    </label>
+                    <label>Imagen del producto
+                        <input type="text" name="thumbnail" size="45" placeholder="Ingresa el thumbnail" id="thumbnail"/>
+                    </label>
+                </fieldset>
+                <input type="submit" value="Enviar" />
+                <img src="https://static.wikia.nocookie.net/monkeyisland/images/5/5c/StaninActionanimiert.gif" alt="Stan">
+            </form>
+        </div>
+
+        <script src="../index.js"></script>
     </body>
 </html>
