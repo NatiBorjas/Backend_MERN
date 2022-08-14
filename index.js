@@ -158,17 +158,23 @@ router.get('/:id', async (req, res) => {
     const encontrado = await productos.getById(id);
     
     if (!encontrado) {
-            res.render('error', {errorMessage: "No se encuentra el producto con Id: " + id});
+            res.render('error', {errorMessage: "Producto no encontrado"});
         } else {
             res.render('unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
         }
     }
 );
 
+app.get('/formulario', (req,res)=> {
+    res.render('formulario')
+})
+
 // METODO SAVE//
 router.post('/', async (req,res) => {
     const {body} = req;
+
     await productos.save(body);
+    console.log(body)
 
     res.json({mensaje: "Se ha agregado el siguiente producto", producto: body})
     console.log(body)

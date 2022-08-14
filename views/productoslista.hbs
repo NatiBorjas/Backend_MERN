@@ -5,13 +5,18 @@
 {{#if existe}}
     {{#each productos}}
         <div class="card">
-            {{this.id}}<br/>
-            {{this.nombre}}<br/>
-            {{this.precio}}<br/>
+            NOMBRE: {{this.nombre}}<br/>
+            PRECIO: ${{this.precio}}<br/>
+            FOTO:<br/> 
             <img src="{{this.img}}" class="product-img"/>
         </div>
     {{/each}}
 {{/if}}
+
+<a href="/formulario">
+    <button>Cargar un producto</button>
+</a>
+
 
 <br/>
 {{> footer}}
