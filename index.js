@@ -4,6 +4,7 @@ const fs = require('fs');
 // SERVIDOR EXPRESS
 //------------------------------ 
 const express = require('express');
+const {engine} = require('express-handlebars');
 const {Router} = express;
 const app = express();
 const router = Router();
@@ -26,6 +27,23 @@ app.use(function(err,req,res,next) {
     console.log(err.stack);
     res.status(500).send('Somenthing broke');
 })
+
+//------------------------------ 
+// CONFIGURACION MOTOR HBS
+//------------------------------ 
+
+app.set('view engine', 'hbs');
+app.set('views', './views');
+
+app.engine(
+    'hbs',
+    engine({
+        extname: '.hbs',
+        defaultLayout: 'index.hbs',
+        layoutsDir: __dirname + '/views/layouts',
+        partialsDir: __dirname + '/views/partials'
+    })
+);
 
 //------------------------------ 
 // CLASE Y SUS METODOS
@@ -129,7 +147,7 @@ router.get('/', async (req, res) => {
         if (!productosAll) {
             res.json({error: "Hubo un error en/con el archivo."});
         } else {
-            res.json(productosAll);
+            res.render('productoslista', {productos: productosAll, existe: true});
         }
     }
 );
@@ -138,10 +156,11 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
     const encontrado = await productos.getById(id);
-        if (!encontrado) {
-            res.json({error: "Producto no encontrado"});
+    
+    if (!encontrado) {
+            res.render('error', {errorMessage: "No se encuentra el producto con Id: " + id});
         } else {
-            res.json(encontrado)
+            res.render('unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
         }
     }
 );

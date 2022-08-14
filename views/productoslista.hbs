@@ -1,0 +1,18 @@
+{{> navbar}}
+<br/>
+
+<h1>Listado de productos</h1>
+{{#if existe}}
+    {{#each productos}}
+        <div class="card">
+            {{this.id}}<br/>
+            {{this.nombre}}<br/>
+            {{this.precio}}<br/>
+            <img src="{{this.img}}" class="product-img"/>
+        </div>
+    {{/each}}
+{{/if}}
+
+<br/>
+{{> footer}}
+<br/>
