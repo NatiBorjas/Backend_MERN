@@ -4,7 +4,7 @@ const fs = require('fs');
 // SERVIDOR EXPRESS
 //------------------------------ 
 const express = require('express');
-const {engine} = require('express-handlebars');
+// const {engine} = require('express-handlebars');
 const {Router} = express;
 const app = express();
 const router = Router();
@@ -29,21 +29,11 @@ app.use(function(err,req,res,next) {
 })
 
 //------------------------------ 
-// CONFIGURACION MOTOR HBS
+// CONFIGURACION MOTOR PUG
 //------------------------------ 
 
-app.set('view engine', 'hbs');
+app.set('view engine', 'pug');
 app.set('views', './views');
-
-app.engine(
-    'hbs',
-    engine({
-        extname: '.hbs',
-        defaultLayout: 'index.hbs',
-        layoutsDir: __dirname + '/views/layouts',
-        partialsDir: __dirname + '/views/partials'
-    })
-);
 
 //------------------------------ 
 // CLASE Y SUS METODOS
@@ -145,9 +135,9 @@ const productos = new Contenedor('productos');
 router.get('/', async (req, res) => {
     let productosAll = await productos.getAll();
         if (!productosAll) {
-            res.json({error: "Hubo un error en/con el archivo."});
+            res.render('error.pug', {errorMessage: "Hubo un error en/con el archivo"});
         } else {
-            res.render('productoslista', {productos: productosAll, existe: true});
+            res.render('productoslista.pug', {titulo: "Listado de productos", productos: productosAll});
         }
     }
 );
@@ -158,26 +148,25 @@ router.get('/:id', async (req, res) => {
     const encontrado = await productos.getById(id);
     
     if (!encontrado) {
-            res.render('error', {errorMessage: "Producto no encontrado"});
+        res.render('error.pug', {errorMessage: "Producto no encontrado"});
         } else {
-            res.render('unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
+            res.render('unProducto.pug', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
         }
     }
 );
 
 app.get('/formulario', (req,res)=> {
-    res.render('formulario')
+    res.render('formulario.pug')
 })
 
 // METODO SAVE//
 router.post('/', async (req,res) => {
-    const {body} = req;
+    const agregado = req.body;
+    console.log(agregado)
+    await productos.save(agregado);
+    let productosAll = await productos.getAll();
+    res.render('productoAgregado.pug', {titulo: "Producto agregado existosamente", agregado: agregado, productos: productosAll})
 
-    await productos.save(body);
-    console.log(body)
-
-    res.json({mensaje: "Se ha agregado el siguiente producto", producto: body})
-    console.log(body)
 })
 
 // ACTUALIZAR UN PRODUCTO //

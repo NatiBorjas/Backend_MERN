@@ -1,0 +1,21 @@
+doctype html
+html(lang='es')
+    include includes/head.pug
+    body
+        navbar
+            ul
+        li
+            a(href='/')="Inicio"
+        li
+            a(href='/')="Quienes Somos"
+        li
+            a(href='/')="Contacto"  
+        h1=titulo
+            div(class="card")
+                p='NOMBRE:'
+                p=producto.nombre
+                p='PRECIO:'
+                p="$" + producto.precio
+                p='FOTO:'
+                img(class='product-img', src=producto.img, alt=producto.nombre)
+        include includes/footer.pug

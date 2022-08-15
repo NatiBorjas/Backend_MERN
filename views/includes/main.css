@@ -64,10 +64,6 @@ button, input[type="submit"] {
     color: black;
 }
 
-img {
-    height: 160px;
-}
-
 header {
     display: flex;
     align-items: center;
