@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <body>
+        <%- include('../partials/navbar'); %>
+        <h1><%=titulo %></h1>
+        <div id="form-container">
+            <form method="post" action="/api/productos">
+                <fieldset>
+                    <label>Nombre del producto
+                        <input type="text" name="nombre" size="45" placeholder="Ingresa el nombre" id="nombre" required>
+                    </label>
+                    <label>Precio del producto"
+                        <input type="text" name="precio" pattern="[0-9]+" size="45" placeholder="Ingresa el precio" id="price" required>
+                    </label>
+                    <label>Imagen del producto
+                        <input type="text" name="img" size="45" placeholder="Ingresa el thumbnail" id="thumbnail" required>
+                    </label>
+                    <input type="submit" value="Enviar">
+                    <img src="https://static.wikia.nocookie.net/monkeyisland/images/5/5c/StaninActionanimiert.gif" alt="Stan">
+                </fieldset>
+            </form>
+        </div>
+        <a href="/api/productos">
+            <button>Ver productos</button>
+        </a>
+        <%- include('../partials/footer'); %>
+    </body>
+</html>

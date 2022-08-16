@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <%- include('../partials/head'); %>
+    </head>
+    <body>
+        <%- include('../partials/navbar'); %>
+        <div>
+            <h1><%=titulo %></h1>
+                <p>Nombre: <%=producto.nombre%><p/>
+                <p>Precio: <%=producto.precio%><p/>
+                <img class="product-img" src="<%=producto.img %>"/>
+        </div>
+        <a href="/api/productos">
+            <button>Ver productos</button>
+        </a>
+        <%- include('../partials/footer'); %>
+    </body>
+</html>

@@ -29,11 +29,10 @@ app.use(function(err,req,res,next) {
 })
 
 //------------------------------ 
-// CONFIGURACION MOTOR PUG
+// CONFIGURACION MOTOR EJS
 //------------------------------ 
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+app.set('view engine', 'ejs');
 
 //------------------------------ 
 // CLASE Y SUS METODOS
@@ -135,9 +134,9 @@ const productos = new Contenedor('productos');
 router.get('/', async (req, res) => {
     let productosAll = await productos.getAll();
         if (!productosAll) {
-            res.render('error.pug', {errorMessage: "Hubo un error en/con el archivo"});
+            res.render('pages/error', {errorMessage: "Hubo un error en/con el archivo"});
         } else {
-            res.render('productoslista.pug', {titulo: "Listado de productos", productos: productosAll});
+            res.render('pages/index', {titulo: "Listado de productos", productos: productosAll});
         }
     }
 );
@@ -148,15 +147,15 @@ router.get('/:id', async (req, res) => {
     const encontrado = await productos.getById(id);
     
     if (!encontrado) {
-        res.render('error.pug', {errorMessage: "Producto no encontrado"});
+        res.render('pages/error', {errorMessage: "Producto no encontrado"});
         } else {
-            res.render('unProducto.pug', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
+            res.render('pages/unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
         }
     }
 );
 
 app.get('/formulario', (req,res)=> {
-    res.render('formulario.pug')
+    res.render('pages/formulario', {titulo: "Carga de productos"})
 })
 
 // METODO SAVE//
@@ -164,9 +163,7 @@ router.post('/', async (req,res) => {
     const agregado = req.body;
     console.log(agregado)
     await productos.save(agregado);
-    let productosAll = await productos.getAll();
-    res.render('productoAgregado.pug', {titulo: "Producto agregado existosamente", agregado: agregado, productos: productosAll})
-
+    res.render('pages/productoAgregado', {titulo: "Producto agregado exitosamente", producto: agregado});
 })
 
 // ACTUALIZAR UN PRODUCTO //
