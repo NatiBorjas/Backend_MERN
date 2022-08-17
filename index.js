@@ -4,7 +4,6 @@ const fs = require('fs');
 // SERVIDOR EXPRESS
 //------------------------------ 
 const express = require('express');
-// const {engine} = require('express-handlebars');
 const {Router} = express;
 const app = express();
 const router = Router();
@@ -64,12 +63,10 @@ class Contenedor {
                     prod.id = 1;
                     productos = [{...prod}];
                     await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
-                    
                     return productos[0].id
                 } else {
                     productos.push(prod);
                     await fs.promises.writeFile(this.archivo,JSON.stringify(productos));
-                    
                     return productos
                 }
         } catch (error) {
@@ -137,7 +134,7 @@ router.get('/', async (req, res) => {
         if (!productosAll) {
             res.render('error.pug', {errorMessage: "Hubo un error en/con el archivo"});
         } else {
-            res.render('productoslista.pug', {titulo: "Listado de productos", productos: productosAll});
+            res.render('index.pug', {titulo: "Listado de productos", productos: productosAll});
         }
     }
 );
@@ -165,33 +162,33 @@ router.post('/', async (req,res) => {
     console.log(agregado)
     await productos.save(agregado);
     let productosAll = await productos.getAll();
-    res.render('productoAgregado.pug', {titulo: "Producto agregado existosamente", agregado: agregado, productos: productosAll})
+    res.render('productoAgregado.pug', {titulo: "Producto agregado exitosamente", agregado: agregado, productos: productosAll})
 
 })
 
-// ACTUALIZAR UN PRODUCTO //
-router.put('/:id', async (req,res) => {
-    const {id} = req.params
-    const {body} = req;
+// // ACTUALIZAR UN PRODUCTO //
+// router.put('/:id', async (req,res) => {
+//     const {id} = req.params
+//     const {body} = req;
 
-    if (!id) {
-        res.json({error: "Producto no encontrado"});
+//     if (!id) {
+//         res.json({error: "Producto no encontrado"});
         
-    } else {
-        await productos.update(id, body);
-        res.json({mensaje: "Se ha actualizado correctamente el producto"});
-    }
+//     } else {
+//         await productos.update(id, body);
+//         res.json({mensaje: "Se ha actualizado correctamente el producto"});
+//     }
 
-})
+// })
 
-// ELIMINAR UN PRODUCTO //
-router.delete('/:id', async (req,res) => {
-    const {id} = req.params;
-    const encontrado = await productos.deleteById(id);
+// // ELIMINAR UN PRODUCTO //
+// router.delete('/:id', async (req,res) => {
+//     const {id} = req.params;
+//     const encontrado = await productos.deleteById(id);
 
-    if (!encontrado) {
-        res.json({error: "Producto no encontrado"});
-    } else {
-        res.json({mensaje: "Se ha elliminado el producto correctamente."});
-    }
-})
+//     if (!encontrado) {
+//         res.json({error: "Producto no encontrado"});
+//     } else {
+//         res.json({mensaje: "Se ha elliminado el producto correctamente."});
+//     }
+// })

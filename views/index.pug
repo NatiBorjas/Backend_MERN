@@ -3,17 +3,9 @@ html(lang='es')
     include includes/head.pug
     body
     include includes/navbar.pug
-    .agregado-container
-        h1=titulo
-        div(class="item-card")
-            div(class="product-img")
-                img(class='product-img', src=agregado.img, alt=agregado.nombre)
-            div(class="product-info")
-                p="NOMBRE:" + agregado.nombre
-                p="PRECIO: $  " + agregado.precio
-    div
-        h1="Listado de productos"
     .productos-container
+    div
+        h1=titulo
         .card-container
             for prod in productos
                 div(class="item-card move")
@@ -22,6 +14,6 @@ html(lang='es')
                     div(class="product-info")
                         p=prod.nombre
                         p='PRECIO: $' + prod.precio
-    a(href="/api/productos")
-        button="Ver productos"
+    a(href="/formulario")
+        button(class="btn")="Cargar un producto"
     include includes/footer.pug

@@ -2,20 +2,16 @@ doctype html
 html(lang='es')
     include includes/head.pug
     body
-        navbar
-            ul
-        li
-            a(href='/')="Inicio"
-        li
-            a(href='/')="Quienes Somos"
-        li
-            a(href='/')="Contacto"  
-        h1=titulo
-            div(class="card")
-                p='NOMBRE:'
+    include includes/navbar.pug
+    .item-container
+        div
+            h1=titulo
+        div(class="item-card")
+            div(class="product-img")
+                img(src=producto.img, alt=producto.nombre)
+            div(class="product-info")
                 p=producto.nombre
-                p='PRECIO:'
                 p="$" + producto.precio
-                p='FOTO:'
-                img(class='product-img', src=producto.img, alt=producto.nombre)
-        include includes/footer.pug
+    a(href="/api/productos")
+        button="Ver productos"
+    include includes/footer.pug

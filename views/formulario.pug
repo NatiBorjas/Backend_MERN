@@ -2,14 +2,8 @@ doctype html
 html(lang='es')
     include includes/head.pug
     body
-        navbar
-            ul
-        li
-            a(href='/')="Inicio"
-        li
-            a(href='/')="Quienes Somos"
-        li
-            a(href='/')="Contacto"  
+    include includes/navbar.pug
+    div
         h1="Carga de productos:"
         div(id="form-container")
             form(method="post" action="/api/productos")
