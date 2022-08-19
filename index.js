@@ -147,7 +147,7 @@ router.get('/', async (req, res) => {
         if (!productosAll) {
             res.json({error: "Hubo un error en/con el archivo."});
         } else {
-            res.render('productoslista', {productos: productosAll, existe: true});
+            res.render('productosLista', {productos: productosAll, existe: true});
         }
     }
 );
@@ -171,38 +171,36 @@ app.get('/formulario', (req,res)=> {
 
 // METODO SAVE//
 router.post('/', async (req,res) => {
-    const {body} = req;
-
-    await productos.save(body);
-    console.log(body)
-
-    res.json({mensaje: "Se ha agregado el siguiente producto", producto: body})
-    console.log(body)
+    const agregado = req.body;
+    console.log(agregado)
+    await productos.save(agregado);
+    let productosAll = await productos.getAll();
+    res.render('productoAgregado', {mensaje: "Se ha agregado el siguiente producto", agregado: agregado, productos: productosAll})
 })
 
-// ACTUALIZAR UN PRODUCTO //
-router.put('/:id', async (req,res) => {
-    const {id} = req.params
-    const {body} = req;
+// // ACTUALIZAR UN PRODUCTO //
+// router.put('/:id', async (req,res) => {
+//     const {id} = req.params
+//     const {body} = req;
 
-    if (!id) {
-        res.json({error: "Producto no encontrado"});
+//     if (!id) {
+//         res.json({error: "Producto no encontrado"});
         
-    } else {
-        await productos.update(id, body);
-        res.json({mensaje: "Se ha actualizado correctamente el producto"});
-    }
+//     } else {
+//         await productos.update(id, body);
+//         res.json({mensaje: "Se ha actualizado correctamente el producto"});
+//     }
 
-})
+// })
 
-// ELIMINAR UN PRODUCTO //
-router.delete('/:id', async (req,res) => {
-    const {id} = req.params;
-    const encontrado = await productos.deleteById(id);
+// // ELIMINAR UN PRODUCTO //
+// router.delete('/:id', async (req,res) => {
+//     const {id} = req.params;
+//     const encontrado = await productos.deleteById(id);
 
-    if (!encontrado) {
-        res.json({error: "Producto no encontrado"});
-    } else {
-        res.json({mensaje: "Se ha elliminado el producto correctamente."});
-    }
-})
+//     if (!encontrado) {
+//         res.json({error: "Producto no encontrado"});
+//     } else {
+//         res.json({mensaje: "Se ha elliminado el producto correctamente."});
+//     }
+// })

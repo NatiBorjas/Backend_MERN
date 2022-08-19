@@ -1,0 +1,36 @@
+{{> navbar}}
+<br/>
+
+<div class="agregado-container">
+    <h1>{{mensaje}}</h1>
+    <div class="item-card">
+        <div class="product-img">
+            <img src="{{agregado.img}}" alt="{{agregado.nombre}}">
+        </div>
+        <div class="product-info">
+            {{agregado.nombre}} <br/>
+            ${{agregado.precio}}<br/>
+        </div>
+    </div>
+</div>
+<div>
+    <h1>Listado de productos</h1>
+</div>
+<div class="productos-container">
+    <div class="card-container">
+        {{#each productos}}
+            <div class="item-card move">
+                <div class="product-img"></div>
+                    <img src="{{this.img}}" alt="{{this.nombre}}"/>
+                <div class="product-info">
+                    {{this.nombre}}<br/>
+                    ${{this.precio}}<br/>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+
+<a href="/api/productos">
+    <button>Ver productos</button>
+</a>

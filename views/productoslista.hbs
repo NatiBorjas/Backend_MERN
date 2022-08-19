@@ -1,22 +1,30 @@
 {{> navbar}}
-<br/>
 
-<h1>Listado de productos</h1>
-{{#if existe}}
-    {{#each productos}}
-        <div class="card">
-            NOMBRE: {{this.nombre}}<br/>
-            PRECIO: ${{this.precio}}<br/>
-            FOTO:<br/> 
-            <img src="{{this.img}}" class="product-img"/>
+<div class="productos-container">
+    <div>
+        <h1>Listado de productos</h1><br>
+    </div>
+    <div class="productos-container">
+        <div class="card-container">
+        {{#if existe}}
+            {{#each productos}}
+            <div class="item-card move">
+                <div class="product-img"></div>
+                    <img src="{{this.img}}" alt="{{this.nombre}}"/>
+                <div class="product-info">
+                    {{this.nombre}}<br/>
+                    ${{this.precio}}<br/>
+                </div>
+            </div>
+            {{/each}}
+        {{/if}}
         </div>
-    {{/each}}
-{{/if}}
+    </div>
+</div>
 
 <a href="/formulario">
     <button>Cargar un producto</button>
 </a>
-
 
 <br/>
 {{> footer}}
