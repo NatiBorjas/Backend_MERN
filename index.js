@@ -174,8 +174,7 @@ router.post('/', async (req,res) => {
     const agregado = req.body;
     console.log(agregado)
     await productos.save(agregado);
-    let productosAll = await productos.getAll();
-    res.render('productoAgregado', {mensaje: "Se ha agregado el siguiente producto", agregado: agregado, productos: productosAll})
+    res.render('productoAgregado', {mensaje: "Se ha agregado el siguiente producto", agregado: agregado})
 })
 
 // // ACTUALIZAR UN PRODUCTO //
