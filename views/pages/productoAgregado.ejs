@@ -5,12 +5,19 @@
     </head>
     <body>
         <%- include('../partials/navbar'); %>
-        <div>
+        <div class="agregado-container">
             <h1><%=titulo %></h1>
-                <p>Nombre: <%=producto.nombre%><p/>
-                <p>Precio: <%=producto.precio%><p/>
-                <img class="product-img" src="<%=producto.img %>"/>
+            <div class="item-card">
+                <div class="product-img">
+                    <img class="product-img" src="<%=producto.img %>"/>
+                </div>
+                <div class="product-info">
+                    <p>Nombre: <%=producto.nombre%><p/>
+                    <p>Precio: <%=producto.precio%><p/>
+                </div>
+            </div>
         </div>
+
         <a href="/api/productos">
             <button>Ver productos</button>
         </a>

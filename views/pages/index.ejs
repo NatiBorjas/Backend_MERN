@@ -5,14 +5,28 @@
     </head>
     <body>
         <%- include('../partials/navbar'); %>
-        <h1><%=titulo %></h1>
-        <% productos.forEach((item)=>{ %>
-            <p>
-                Nombre: <%=item.nombre%><br/>
-                precio: <%=item.precio%><br/>
-                <img class="product-img" src="<%=item.img %>"/><br/>
-            </p>
-        <% }) %>
+        <div>
+            <h1><%=titulo %></h1>
+        </div>
+        <div class="productos-container">
+            <div class="card-container">
+                <% productos.forEach((item)=>{ %>
+                    <div class="item-card move">
+                        <div class="product-img">
+                            <img class="product-img" src="<%=item.img %>"/>
+                        </div>
+                        <div class="product-info">
+                            <p>
+                                Nombre: <%=item.nombre%><br/>
+                                precio: <%=item.precio%><br/>
+                                <br/>
+                            </p>
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    
         <a href="/formulario">
             <button>Cargar un producto</button>
         </a>
