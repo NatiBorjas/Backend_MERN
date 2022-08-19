@@ -161,34 +161,7 @@ router.post('/', async (req,res) => {
     const agregado = req.body;
     console.log(agregado)
     await productos.save(agregado);
-    let productosAll = await productos.getAll();
-    res.render('productoAgregado.pug', {titulo: "Producto agregado exitosamente", agregado: agregado, productos: productosAll})
+    res.render('productoAgregado.pug', {titulo: "Producto agregado exitosamente", agregado: agregado})
 
 })
 
-// // ACTUALIZAR UN PRODUCTO //
-// router.put('/:id', async (req,res) => {
-//     const {id} = req.params
-//     const {body} = req;
-
-//     if (!id) {
-//         res.json({error: "Producto no encontrado"});
-        
-//     } else {
-//         await productos.update(id, body);
-//         res.json({mensaje: "Se ha actualizado correctamente el producto"});
-//     }
-
-// })
-
-// // ELIMINAR UN PRODUCTO //
-// router.delete('/:id', async (req,res) => {
-//     const {id} = req.params;
-//     const encontrado = await productos.deleteById(id);
-
-//     if (!encontrado) {
-//         res.json({error: "Producto no encontrado"});
-//     } else {
-//         res.json({mensaje: "Se ha elliminado el producto correctamente."});
-//     }
-// })

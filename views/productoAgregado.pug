@@ -11,17 +11,7 @@ html(lang='es')
             div(class="product-info")
                 p="NOMBRE:" + agregado.nombre
                 p="PRECIO: $  " + agregado.precio
-    div
-        h1="Listado de productos"
-    .productos-container
-        .card-container
-            for prod in productos
-                div(class="item-card move")
-                    div(class="product-img")
-                        img(src=prod.img, alt=prod.nombre)
-                    div(class="product-info")
-                        p=prod.nombre
-                        p='PRECIO: $' + prod.precio
+
     a(href="/api/productos")
         button="Ver productos"
     include includes/footer.pug
