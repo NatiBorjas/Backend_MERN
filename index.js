@@ -87,16 +87,16 @@ class Contenedor {
         }
     }
     
-    async update(id, obj) {
-        try {
-            const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let dataParse = JSON.parse(data)
-            let updateProducto = dataParse.map((e) => e.id == id ? e = {...e, ...obj} : e);
-            await fs.promises.writeFile(this.archivo, JSON.stringify(updateProducto));
-        } catch (error) {
-            console.log("Hubo un error:" + error);
-        }
-    }
+    // async update(id, obj) {
+    //     try {
+    //         const data = await fs.promises.readFile(this.archivo, 'utf-8');
+    //         let dataParse = JSON.parse(data)
+    //         let updateProducto = dataParse.map((e) => e.id == id ? e = {...e, ...obj} : e);
+    //         await fs.promises.writeFile(this.archivo, JSON.stringify(updateProducto));
+    //     } catch (error) {
+    //         console.log("Hubo un error:" + error);
+    //     }
+    // }
 
     async getById(id) {
         try {
@@ -114,24 +114,24 @@ class Contenedor {
         }
     }
     
-    async deleteById(id) {
-        try {
-            const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let productos = JSON.parse(data);
-            let prod = productos.find(x => x.id == id);
+    // async deleteById(id) {
+    //     try {
+    //         const data = await fs.promises.readFile(this.archivo, 'utf-8');
+    //         let productos = JSON.parse(data);
+    //         let prod = productos.find(x => x.id == id);
 
-            if(!prod) {
-                console.log(`No se encuentra el objeto con Id ${id}`)
-            } else {
-                productos = productos.filter(i => i.id !== prod.id);
-                await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
-                return productos
-            }
+    //         if(!prod) {
+    //             console.log(`No se encuentra el objeto con Id ${id}`)
+    //         } else {
+    //             productos = productos.filter(i => i.id !== prod.id);
+    //             await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
+    //             return productos
+    //         }
 
-        } catch (error) {
-            console.log("Hubo un error al intentar eliminar el objeto:\n" + error)
-        }
-    }
+    //     } catch (error) {
+    //         console.log("Hubo un error al intentar eliminar el objeto:\n" + error)
+    //     }
+    // }
 
 }
 
@@ -177,9 +177,8 @@ app.get('/formulario', async (req,res)=> {
 // METODO SAVE//
 router.post('/', async (req,res) => {
     const agregado = req.body;
-    console.log(agregado)
     await productos.save(agregado);
-    res.render('productoAgregado', {mensaje: "Se ha agregado el siguiente producto", agregado: agregado})
+    res.redirect('/formulario')
 })
 
 // // ACTUALIZAR UN PRODUCTO //
