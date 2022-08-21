@@ -116,9 +116,60 @@ button, input[type="submit"] {
     color: black;
 }
 
-img {
+#stan {
     height: 160px;
 }
+
+.table-container {
+    align-content: center;
+    width: 90vw;
+	max-width: 50%;
+	margin: 0 auto;
+}
+
+.productos-container{
+    display: flex;
+    align-items: center;
+}
+
+table {
+    border: 1px solid #00FFFF;
+    border-radius: 50px;
+    border-collapse: separate;
+    font-size: 9px;
+    border-spacing: 0;
+    border-radius: 25px;
+}
+    table th {
+        border: 1px solid #00FFFF;
+        padding: 20px;
+        margin: 50px;
+        /* height: 50px; */
+    }
+    table tr, table td {
+        padding: 20px;
+        margin: 40px;
+    }
+    table tr {
+        font-size: 20px;
+        padding: 15px;
+        margin: 10px;
+        /* border: 25px; */
+        background-color: black;
+        align-items: center;
+        
+    }
+    table td {
+        padding: 15px;
+        align-items: center;
+        align-content: center;
+        margin: 5px;
+    }
+
+.centrado {
+    text-align: center;
+}
+
 
 /* ----------PARTIALS---------- */
 header {

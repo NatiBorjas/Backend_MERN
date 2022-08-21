@@ -16,12 +16,47 @@
             </label>
         </fieldset>
         <input type="submit" value="Enviar" />
-        <img src="https://static.wikia.nocookie.net/monkeyisland/images/5/5c/StaninActionanimiert.gif" alt="Stan">
+        <img  id="stan" src="https://static.wikia.nocookie.net/monkeyisland/images/5/5c/StaninActionanimiert.gif" alt="Stan">
     </form>
-<a href="/api/productos">
+</div>
+<br/>
+<div class="productos-container-form">
+    <div>
+        <h1>Lista de productos</h1>
+    </div>
+    <div class="table-container">
+        <table>
+            <thead class="centrado">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Thumbnail</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#if existe}}
+                    {{#each productos}}
+                        <tr >
+                            <td class="centrado">
+                                {{this.nombre}}
+                            </td>
+                            <td class="centrado">
+                                ${{this.precio}}
+                            </td>
+                            <td class="centrado">
+                                <img src="{{this.img}}" alt="{{this.nombre}}"/>
+                            </td>
+                        </tr>
+                    {{/each}}
+                {{/if}}
+            </tbody>
+        </table>
+    </div>
+    <a href="/api/productos">
     <button>Ver productos</button>
 </a>
 </div>
+
 
 <br/>
 {{> footer}}

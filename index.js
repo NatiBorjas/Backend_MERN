@@ -165,8 +165,13 @@ router.get('/:id', async (req, res) => {
     }
 );
 
-app.get('/formulario', (req,res)=> {
-    res.render('formulario')
+app.get('/formulario', async (req,res)=> {
+    let productosAll = await productos.getAll();
+    if (!productosAll) {
+        res.json({error: "Hubo un error con el archivo."});
+    } else {
+        res.render('formulario', {productos: productosAll, existe: true});
+    }
 })
 
 // METODO SAVE//
