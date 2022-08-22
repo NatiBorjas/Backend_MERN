@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 //------------------------------ 
-// SERVIDOR EXPRESS
+// SERVIDOR EXPRESS y WEBSOCKS
 //------------------------------ 
 const express = require('express');
 const {engine} = require('express-handlebars');
@@ -9,8 +9,11 @@ const {Router} = express;
 const app = express();
 const router = Router();
 const PORT = process.env.PORT || 8080;
+const httpServer = require("http").createServer(app);
+const io = require("socket.io")(httpServer);
 
-const server = app.listen(PORT, () => {
+
+const server = httpServer.listen(PORT, () => {
     console.log(`Hola, soy tu servidor escuchando en el puerto [ ${server.address().port} ]`)
 });
 server.on("error", error => console.log(`Error en servidor: ${error}`));
@@ -143,6 +146,7 @@ const productos = new Contenedor('productos');
 
 // METODO GET ALL
 router.get('/', async (req, res) => {
+
     let productosAll = await productos.getAll();
         if (!productosAll) {
             res.json({error: "Hubo un error en/con el archivo."});
@@ -165,13 +169,30 @@ router.get('/:id', async (req, res) => {
     }
 );
 
+// FORMULARIO //
 app.get('/formulario', async (req,res)=> {
+    
+    let chat = [];
+    io.on('connection', (socket) => {
+        chat.push('Usuarix conectadx: ' + socket.id);
+        io.sockets.emit("arr-chat", chat);
+    
+        socket.on("data-generica",(data)=>{
+            data = data.replace("policia", "1312");
+            chat.push(data);
+            io.sockets.emit("arr-chat", chat)
+        });
+        
+        // socket.on('mensajes', function(data) { render(data); });
+    });
+
     let productosAll = await productos.getAll();
     if (!productosAll) {
         res.json({error: "Hubo un error con el archivo."});
     } else {
         res.render('formulario', {productos: productosAll, existe: true});
-    }
+    };
+
 })
 
 // METODO SAVE//
@@ -181,22 +202,22 @@ router.post('/', async (req,res) => {
     res.redirect('/formulario')
 })
 
-// // ACTUALIZAR UN PRODUCTO //
+// ACTUALIZAR UN PRODUCTO //
 // router.put('/:id', async (req,res) => {
 //     const {id} = req.params
 //     const {body} = req;
 
 //     if (!id) {
 //         res.json({error: "Producto no encontrado"});
-        
+
 //     } else {
 //         await productos.update(id, body);
 //         res.json({mensaje: "Se ha actualizado correctamente el producto"});
 //     }
 
-// })
+// });
 
-// // ELIMINAR UN PRODUCTO //
+// ELIMINAR UN PRODUCTO //
 // router.delete('/:id', async (req,res) => {
 //     const {id} = req.params;
 //     const encontrado = await productos.deleteById(id);
@@ -206,4 +227,17 @@ router.post('/', async (req,res) => {
 //     } else {
 //         res.json({mensaje: "Se ha elliminado el producto correctamente."});
 //     }
-// })
+// });
+
+
+//------------------------------ 
+//    WEBSOCKS
+//------------------------------ 
+
+
+// io.on('connection', (socket) => {
+//     console.log('Usuario conectado '+ socket.id);
+// });
+
+
+

@@ -94,7 +94,7 @@ label {
 
 }
 
-input, textarea {
+.input, textarea {
     font-size: 16px;
     background-color: #0a0a23;
     color: #00FFFF;
@@ -127,9 +127,16 @@ button, input[type="submit"] {
 	margin: 0 auto;
 }
 
-.productos-container{
+.productos-container-form{
     display: flex;
     align-items: center;
+    margin: 25px;
+    padding: 25px;
+}
+
+.chat-container {
+    margin: 25px;
+    padding: 25px;
 }
 
 table {

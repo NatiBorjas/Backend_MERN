@@ -6,13 +6,13 @@
     <form method="post" action="/api/productos">
         <fieldset>
             <label>Nombre del producto
-                <input type="text" name="nombre" size="45" placeholder="Ingresa el nombre" id="nombre" required/>
+                <input class="input" type="text" name="nombre" size="45" placeholder="Ingresa el nombre" id="nombre" required/>
             </label>
             <label>Precio del producto
-                <input type="text" name="precio" pattern="[0-9]+" size="45" placeholder="Ingresa el precio" id="precio" required/>
+                <input class="input" type="text" name="precio" pattern="[0-9]+" size="45" placeholder="Ingresa el precio" id="precio" required/>
             </label>
             <label>Imagen del producto
-                <input type="text" name="img" size="45" placeholder="Ingresa el thumbnail" id="img" required/>
+                <input class="input" type="text" name="img" size="45" placeholder="Ingresa el thumbnail" id="img" required/>
             </label>
         </fieldset>
         <input type="submit" value="Enviar" />
@@ -49,9 +49,26 @@
             </tbody>
         </table>
     </div>
+</div>
+
+<div class="chat-container">
+    <form onsubmit="return enviar()">
+        <label for="correo">Ingrese su correo electronico
+            <input class="input" id="caja-correo" type="correo" name="correo" value="" placeholder="correo" required/>
+        </label>
+        <label for="msg">Ingrese su mensaje
+            <input class="input" id="caja-msg" type="text" name="msg" value="" placeholder="Mensaje" required/>
+        </label>
+        <button type="submit">Enviar mensaje</button>
+    </form>
+    <br/>    
+    <div id="chat-container"></div>
+</div>
+
+<div>
     <a href="/api/productos">
-    <button>Ver productos</button>
-</a>
+        <button>Ver productos</button>
+    </a>
 </div>
 
 
