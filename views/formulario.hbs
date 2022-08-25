@@ -20,7 +20,6 @@
     </form>
 </div>
 <br/>
-<div class="productos-container-form">
 
 <div class="table-container">
         <table>
@@ -32,21 +31,6 @@
                 </tr>
             </thead>
             <tbody>
-                {{#if existe}}
-                    {{#each productos}}
-                        <tr >
-                            <td class="centrado">
-                                {{this.nombre}}
-                            </td>
-                            <td class="centrado">
-                                ${{this.precio}}
-                            </td>
-                            <td class="centrado">
-                                <img src="{{this.img}}" alt="{{this.nombre}}"/>
-                            </td>
-                        </tr>
-                    {{/each}}
-                {{/if}}
             </tbody>
         </table>
     </div>

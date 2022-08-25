@@ -1,17 +1,24 @@
 socket.on('arr-chat', (data)=>{
-    const html = data.reduce((html, item)=> '<div class="mensaje">' + item + '<div/>' + html, "");
+    console.log(data)
+    const html = data.reduce((html, item)=> 
+    '<div class="mensaje">' + item + '<div/>' + html, "");
     document.getElementById('chat-history').innerHTML = html;
 })
 
 // socket.on('data-generica', (data)=>{
 //     console.log(data);
-// })
+// }) class""
 
 socket.on('productos', (data)=>{
-    console.log(data)
-    // const productosLista = data
-    // render(data);
-})
+    let productosLista = data.reduce((lista, item) => lista + `
+    <tr class="item-lista">
+        <td>${item.nombre}</td>
+        <td>${item.precio}</td>
+        <td><img src="${item.img}"/></td>
+    </tr>`, '')
+    
+    document.querySelector('tbody').innerHTML = productosLista;
+});
 
 function agregar(){
     const nombre = document.getElementById("nombre").value;
@@ -24,23 +31,7 @@ function agregar(){
 function enviar(){
     const correo = document.getElementById("caja-correo").value;
     const msg = document.getElementById("caja-msg").value;
-    socket.emit('nuevoMensaje', correo + " dice: " + msg);
+    let fecha = new Date().toLocaleDateString();
+    socket.emit('nuevoMensaje', correo +  " [" + fecha + "] : " + msg);
     return false;
-}
-
-function render(data) {
-    const html = data.map((item) => {
-            (`<tr>
-                <td>
-                    ${item.nombre}
-                </td>:
-                <td>
-                    ${item.precio}
-                </td>
-                <td>
-                    ${item.img}
-                </td>  
-            </tr>`)
-    }).join(" ");
-    document.getElementsByTagName('tbody').innerHTML = html;
 }

@@ -170,18 +170,9 @@ router.get('/:id', async (req, res) => {
 
 // FORMULARIO //
 app.get('/formulario', async (req,res)=> {
-    // io.on('connection', async () => {
-    //     const productosLista = await productos.getAll();
-    //     io.sockets.emit("productos", productosLista);
-    // });
-    
-
-    let productosAll = await productos.getAll();
-    if (!productosAll) {
-        res.json({error: "Hubo un error con el archivo."});
-    } else {
-        res.render('formulario', {productos: productosAll, existe: true});
-    };
+    const productosLista = await productos.getAll();
+    io.sockets.emit("productos", productosLista );
+    res.render('formulario');
 })
 
 // METODO SAVE//
@@ -224,31 +215,26 @@ app.get('/formulario', async (req,res)=> {
 //------------------------------ 
 
 io.on('connection', async (socket) => {
-
     const productosLista = await productos.getAll();
-    io.sockets.emit("productos", productosLista )
+    io.sockets.emit("productos", productosLista );
 
     chat.push('Usuarix conectadx: ' + socket.id);
     io.sockets.emit("arr-chat", chat);
 
     socket.on('nuevoMensaje',(mensaje)=>{
-        // data = data.replace("policia", "1312");
         chat.push(mensaje);
         io.sockets.emit("arr-chat", chat);
     });
     
     socket.on('data-generica',(data)=>{
-        data = data.replace("policia", "1312");
         chat.push(data);
         io.sockets.emit("arr-chat", chat)
     });
 
     socket.on('nuevoProducto', async (data) => {
-        const agregado = data;
-        await productos.save(agregado);
-        let productosLista = await productos.getAll();
-        io.sockets.emit("productos", productosLista )
+        await productos.save(data);
+        let agregado = await productos.getAll();
+        io.sockets.emit("productos", agregado )
     });
 });
 
-// socket.on('mensajes', function(data) { render(data); });
