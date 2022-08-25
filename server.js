@@ -139,14 +139,13 @@ class Contenedor {
 }
 
 const productos = new Contenedor('productos');
-
+let chat = [];
 //------------------------------ 
 //    PETICIONES 
 //------------------------------ 
 
 // METODO GET ALL
 router.get('/', async (req, res) => {
-
     let productosAll = await productos.getAll();
         if (!productosAll) {
             res.json({error: "Hubo un error en/con el archivo."});
@@ -171,20 +170,11 @@ router.get('/:id', async (req, res) => {
 
 // FORMULARIO //
 app.get('/formulario', async (req,res)=> {
+    // io.on('connection', async () => {
+    //     const productosLista = await productos.getAll();
+    //     io.sockets.emit("productos", productosLista);
+    // });
     
-    let chat = [];
-    io.on('connection', (socket) => {
-        chat.push('Usuarix conectadx: ' + socket.id);
-        io.sockets.emit("arr-chat", chat);
-    
-        socket.on("data-generica",(data)=>{
-            data = data.replace("policia", "1312");
-            chat.push(data);
-            io.sockets.emit("arr-chat", chat)
-        });
-        
-        // socket.on('mensajes', function(data) { render(data); });
-    });
 
     let productosAll = await productos.getAll();
     if (!productosAll) {
@@ -192,15 +182,14 @@ app.get('/formulario', async (req,res)=> {
     } else {
         res.render('formulario', {productos: productosAll, existe: true});
     };
-
 })
 
 // METODO SAVE//
-router.post('/', async (req,res) => {
-    const agregado = req.body;
-    await productos.save(agregado);
-    res.redirect('/formulario')
-})
+// router.post('/', async (req,res) => {
+//     const agregado = req.body;
+//     await productos.save(agregado);
+//     res.redirect('/formulario')
+// })
 
 // ACTUALIZAR UN PRODUCTO //
 // router.put('/:id', async (req,res) => {
@@ -234,10 +223,32 @@ router.post('/', async (req,res) => {
 //    WEBSOCKS
 //------------------------------ 
 
+io.on('connection', async (socket) => {
 
-// io.on('connection', (socket) => {
-//     console.log('Usuario conectado '+ socket.id);
-// });
+    const productosLista = await productos.getAll();
+    io.sockets.emit("productos", productosLista )
 
+    chat.push('Usuarix conectadx: ' + socket.id);
+    io.sockets.emit("arr-chat", chat);
 
+    socket.on('nuevoMensaje',(mensaje)=>{
+        // data = data.replace("policia", "1312");
+        chat.push(mensaje);
+        io.sockets.emit("arr-chat", chat);
+    });
+    
+    socket.on('data-generica',(data)=>{
+        data = data.replace("policia", "1312");
+        chat.push(data);
+        io.sockets.emit("arr-chat", chat)
+    });
 
+    socket.on('nuevoProducto', async (data) => {
+        const agregado = data;
+        await productos.save(agregado);
+        let productosLista = await productos.getAll();
+        io.sockets.emit("productos", productosLista )
+    });
+});
+
+// socket.on('mensajes', function(data) { render(data); });

@@ -3,7 +3,7 @@
 
 <h1>Carga de productos:</h1>
 <div id="form-container">
-    <form method="post" action="/api/productos">
+    <form onsubmit="return agregar()" action="/api/productos">
         <fieldset>
             <label>Nombre del producto
                 <input class="input" type="text" name="nombre" size="45" placeholder="Ingresa el nombre" id="nombre" required/>
@@ -21,7 +21,8 @@
 </div>
 <br/>
 <div class="productos-container-form">
-    <div class="table-container">
+
+<div class="table-container">
         <table>
             <thead class="centrado">
                 <tr>
@@ -62,7 +63,7 @@
         <button type="submit">Enviar mensaje</button>
     </form>
     <br/>    
-    <div id="chat-container"></div>
+    <div id="chat-history"></div>
 </div>
 
 <div>

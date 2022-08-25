@@ -137,6 +137,12 @@ button, input[type="submit"] {
 .chat-container {
     margin: 25px;
     padding: 25px;
+    border: 1px solid #00FFFF;
+    background-color: #0a0a23;
+}
+
+.chat-history{
+    max-height: 500px;
 }
 
 table {
