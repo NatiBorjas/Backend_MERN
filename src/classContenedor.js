@@ -15,22 +15,23 @@ class Contenedor {
         }
     }
 
-    async save(prod) {
+    async save(item) {
         try {
             const data = await fs.promises.readFile(this.archivo, 'utf-8');
             let dataParse = JSON.parse(data);
             const indice = dataParse.map(i => i.id).sort();
-            prod.id = indice[indice.length -1]+1;
+            item.id = indice[indice.length -1]+1;
 
-                if (!prod.id) {
-                    prod.id = 1;
-                    dataParse = [{...prod}];
+                if (!item.id) {
+                    item.id = 1;
+                    dataParse = [{...item}];
                     await fs.promises.writeFile(this.archivo, JSON.stringify(dataParse));
                     return dataParse[0].id
                 }
-                dataParse.push(prod);
+                dataParse.push(item);
                 await fs.promises.writeFile(this.archivo,JSON.stringify(dataParse));
                 return dataParse
+                
         } catch (error) {
             console.log("Hubo un error:" + error);
         }
