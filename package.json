@@ -7,7 +7,7 @@
   "name": "backend_mern",
   "description": "Proyecto de Curso Backend CoderHouse",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "devDependencies": {},
   "scripts": {
     "start": "nodemon server.js",

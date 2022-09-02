@@ -5,10 +5,6 @@ socket.on('arr-chat', (data)=>{
     document.getElementById('chat-history').innerHTML = html;
 })
 
-// socket.on('data-generica', (data)=>{
-//     console.log(data);
-// }) class""
-
 socket.on('productos', (data)=>{
     let productosLista = data.reduce((lista, item) => lista + `
     <tr class="item-lista">
