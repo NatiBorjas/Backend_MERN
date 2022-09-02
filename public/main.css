@@ -19,11 +19,14 @@ a {
     color: #00FFFF;
 }
 
+<<<<<<< HEAD
 #form-container {
     width: 100%;
     margin-top: 45px;
 }
 
+=======
+>>>>>>> main
 /* ----------PRODUCTOS---------- */
 .productos-container {
     display: flex;
@@ -69,6 +72,14 @@ a {
 
 /* ----------FORMULARIO---------- */
 
+<<<<<<< HEAD
+=======
+#form-container {
+    width: 100%;
+    margin-top: 45px;
+}
+
+>>>>>>> main
 form {    
     display: flex;
     flex-direction: column;
@@ -94,7 +105,11 @@ label {
 
 }
 
+<<<<<<< HEAD
 input, textarea {
+=======
+.input, textarea {
+>>>>>>> main
     font-size: 16px;
     background-color: #0a0a23;
     color: #00FFFF;
@@ -116,6 +131,77 @@ button, input[type="submit"] {
     color: black;
 }
 
+<<<<<<< HEAD
+=======
+#stan {
+    height: 160px;
+}
+
+.table-container {
+    align-content: center;
+    width: 90vw;
+	max-width: 50%;
+	margin: 0 auto;
+}
+
+.productos-container-form{
+    display: flex;
+    align-items: center;
+    margin: 25px;
+    padding: 25px;
+}
+
+.chat-container {
+    margin: 25px;
+    padding: 25px;
+    border: 1px solid #00FFFF;
+    background-color: #0a0a23;
+}
+
+.chat-history{
+    max-height: 500px;
+}
+
+table {
+    border: 1px solid #00FFFF;
+    border-radius: 50px;
+    border-collapse: separate;
+    font-size: 9px;
+    border-spacing: 0;
+    border-radius: 25px;
+}
+    table th {
+        border: 1px solid #00FFFF;
+        padding: 20px;
+        margin: 50px;
+        /* height: 50px; */
+    }
+    table tr, table td {
+        padding: 20px;
+        margin: 40px;
+    }
+    table tr {
+        font-size: 20px;
+        padding: 15px;
+        margin: 10px;
+        /* border: 25px; */
+        background-color: black;
+        align-items: center;
+        
+    }
+    table td {
+        padding: 15px;
+        align-items: center;
+        align-content: center;
+        margin: 5px;
+    }
+
+.centrado {
+    text-align: center;
+}
+
+
+>>>>>>> main
 /* ----------PARTIALS---------- */
 header {
     display: flex;

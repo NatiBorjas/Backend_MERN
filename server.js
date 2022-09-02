@@ -1,7 +1,7 @@
 const fs = require('fs');
 
 //------------------------------ 
-// SERVIDOR EXPRESS
+// SERVIDOR EXPRESS y WEBSOCKS
 //------------------------------ 
 const express = require('express');
 // const {engine} = require('express-handlebars');
@@ -9,8 +9,11 @@ const {Router} = express;
 const app = express();
 const router = Router();
 const PORT = process.env.PORT || 8080;
+const httpServer = require("http").createServer(app);
+const io = require("socket.io")(httpServer);
 
-const server = app.listen(PORT, () => {
+
+const server = httpServer.listen(PORT, () => {
     console.log(`Hola, soy tu servidor escuchando en el puerto [ ${server.address().port} ]`)
 });
 server.on("error", error => console.log(`Error en servidor: ${error}`));
@@ -76,16 +79,16 @@ class Contenedor {
         }
     }
     
-    async update(id, obj) {
-        try {
-            const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let dataParse = JSON.parse(data)
-            let updateProducto = dataParse.map((e) => e.id == id ? e = {...e, ...obj} : e);
-            await fs.promises.writeFile(this.archivo, JSON.stringify(updateProducto));
-        } catch (error) {
-            console.log("Hubo un error:" + error);
-        }
-    }
+    // async update(id, obj) {
+    //     try {
+    //         const data = await fs.promises.readFile(this.archivo, 'utf-8');
+    //         let dataParse = JSON.parse(data)
+    //         let updateProducto = dataParse.map((e) => e.id == id ? e = {...e, ...obj} : e);
+    //         await fs.promises.writeFile(this.archivo, JSON.stringify(updateProducto));
+    //     } catch (error) {
+    //         console.log("Hubo un error:" + error);
+    //     }
+    // }
 
     async getById(id) {
         try {
@@ -103,29 +106,29 @@ class Contenedor {
         }
     }
     
-    async deleteById(id) {
-        try {
-            const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let productos = JSON.parse(data);
-            let prod = productos.find(x => x.id == id);
+    // async deleteById(id) {
+    //     try {
+    //         const data = await fs.promises.readFile(this.archivo, 'utf-8');
+    //         let productos = JSON.parse(data);
+    //         let prod = productos.find(x => x.id == id);
 
-            if(!prod) {
-                console.log(`No se encuentra el objeto con Id ${id}`)
-            } else {
-                productos = productos.filter(i => i.id !== prod.id);
-                await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
-                return productos
-            }
+    //         if(!prod) {
+    //             console.log(`No se encuentra el objeto con Id ${id}`)
+    //         } else {
+    //             productos = productos.filter(i => i.id !== prod.id);
+    //             await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
+    //             return productos
+    //         }
 
-        } catch (error) {
-            console.log("Hubo un error al intentar eliminar el objeto:\n" + error)
-        }
-    }
+    //     } catch (error) {
+    //         console.log("Hubo un error al intentar eliminar el objeto:\n" + error)
+    //     }
+    // }
 
 }
 
 const productos = new Contenedor('productos');
-
+let chat = [];
 //------------------------------ 
 //    PETICIONES 
 //------------------------------ 
@@ -136,7 +139,11 @@ router.get('/', async (req, res) => {
         if (!productosAll) {
             res.render('pages/error', {errorMessage: "Hubo un error en/con el archivo"});
         } else {
+<<<<<<< HEAD:index.js
             res.render('pages/index', {titulo: "Listado de productos", productos: productosAll});
+=======
+            res.render('productosLista', {productos: productosAll, existe: true});
+>>>>>>> main:server.js
         }
     }
 );
@@ -154,6 +161,7 @@ router.get('/:id', async (req, res) => {
     }
 );
 
+<<<<<<< HEAD:index.js
 app.get('/formulario', (req,res)=> {
     res.render('pages/formulario', {titulo: "Carga de productos"})
 })
@@ -164,3 +172,75 @@ router.post('/', async (req,res) => {
     await productos.save(agregado);
     res.render('pages/productoAgregado', {titulo: "Producto agregado exitosamente", producto: agregado});
 })
+=======
+// FORMULARIO //
+app.get('/formulario', async (req,res)=> {
+    const productosLista = await productos.getAll();
+    io.sockets.emit("productos", productosLista );
+    res.render('formulario');
+})
+
+// METODO SAVE//
+// router.post('/', async (req,res) => {
+//     const agregado = req.body;
+//     await productos.save(agregado);
+//     res.redirect('/formulario')
+// })
+
+// ACTUALIZAR UN PRODUCTO //
+// router.put('/:id', async (req,res) => {
+//     const {id} = req.params
+//     const {body} = req;
+
+//     if (!id) {
+//         res.json({error: "Producto no encontrado"});
+
+//     } else {
+//         await productos.update(id, body);
+//         res.json({mensaje: "Se ha actualizado correctamente el producto"});
+//     }
+
+// });
+
+// ELIMINAR UN PRODUCTO //
+// router.delete('/:id', async (req,res) => {
+//     const {id} = req.params;
+//     const encontrado = await productos.deleteById(id);
+
+//     if (!encontrado) {
+//         res.json({error: "Producto no encontrado"});
+//     } else {
+//         res.json({mensaje: "Se ha elliminado el producto correctamente."});
+//     }
+// });
+
+
+//------------------------------ 
+//    WEBSOCKS
+//------------------------------ 
+
+io.on('connection', async (socket) => {
+    const productosLista = await productos.getAll();
+    io.sockets.emit("productos", productosLista );
+
+    chat.push('Usuarix conectadx: ' + socket.id);
+    io.sockets.emit("arr-chat", chat);
+
+    socket.on('nuevoMensaje',(mensaje)=>{
+        chat.push(mensaje);
+        io.sockets.emit("arr-chat", chat);
+    });
+    
+    socket.on('data-generica',(data)=>{
+        chat.push(data);
+        io.sockets.emit("arr-chat", chat)
+    });
+
+    socket.on('nuevoProducto', async (data) => {
+        await productos.save(data);
+        let agregado = await productos.getAll();
+        io.sockets.emit("productos", agregado )
+    });
+});
+
+>>>>>>> main:server.js
