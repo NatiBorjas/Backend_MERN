@@ -37,7 +37,6 @@ app.use(function(err,req,res,next) {
 //------------------------------ 
 
 const Contenedor = require("./src/classContenedor");
-// const { timeStamp } = require('console');
 const productos = new Contenedor('productos');
 const carrito = new Contenedor('carrito');
 
@@ -46,7 +45,7 @@ const carrito = new Contenedor('carrito');
 //------------------------------ 
 
 const fecha = Date.now();
-const timeStamp = {"timeStamp": new Date(fecha).toUTCString};
+const timeStamp = {"timestamp": new Date(fecha).toUTCString()};
 
 //------------------------------ 
 //    PETICIONES PRODUCTOS
@@ -90,7 +89,7 @@ routerProductos.post('/',
     },
     async (req,res) => {
         const {body} = req;
-        const agregado = {...timeStamp, ...body};
+        const agregado = {...body , ...timeStamp};
         await productos.save(agregado);
         res.json({success: "ok", producto: agregado});
     }
@@ -111,7 +110,7 @@ routerProductos.put('/:id',
     let productoActualizar = await productos.getById(id);
 
     if (productoActualizar) {
-        productoActualizar = {...productoActualizar, ...body};
+        productoActualizar = {...productoActualizar, ...body, ...timeStamp};
         await productos.update(id, productoActualizar);
         res.json({success: "ok", producto: productoActualizar});
     } else {
