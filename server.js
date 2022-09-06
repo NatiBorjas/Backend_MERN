@@ -52,14 +52,14 @@ app.engine(
 
 const Contenedor = require("./src/classContenedor");
 const productos = new Contenedor('productos');
-const carritos = new Contenedor('carrito');
+// const carritos = new Contenedor('carrito');
 
 //------------------------------ 
 //    TIMESTAMP
 //------------------------------ 
 
-const fecha = Date.now();
-const timeStamp = {"timestamp": new Date(fecha).toUTCString()};
+// const fecha = Date.now();
+// const timeStamp = {"timestamp": new Date(fecha).toUTCString()};
 
 //------------------------------ 
 //    PETICIONES 
@@ -116,7 +116,6 @@ app.get('/formulario', async (req,res)=> {
 //         await productos.update(id, body);
 //         res.json({mensaje: "Se ha actualizado correctamente el producto"});
 //     }
-
 // });
 
 // ELIMINAR UN PRODUCTO //
