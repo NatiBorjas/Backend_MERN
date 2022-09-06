@@ -1,9 +1,4 @@
 {
-  "dependencies": {
-    "express": "^4.18.1",
-    "express-handlebars": "^6.0.6",
-    "socket.io": "^4.5.1"
-  },
   "name": "backend_mern",
   "description": "Proyecto de Curso Backend CoderHouse",
   "version": "1.0.0",
@@ -13,13 +8,21 @@
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "express-handlebars": "^6.0.6",
+    "socket.io": "^4.5.1",
+    "knex": "^0.21.17",
+    "mysql": "^2.18.1",
+    "sqlite3": "^5.0.2"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/NatiBorjas/Backend_MERN.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/NatiBorjas/Backend_MERN/issues"
   },

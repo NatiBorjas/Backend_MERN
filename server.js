@@ -116,6 +116,7 @@ app.get('/formulario', async (req,res)=> {
 //         await productos.update(id, body);
 //         res.json({mensaje: "Se ha actualizado correctamente el producto"});
 //     }
+
 // });
 
 // ELIMINAR UN PRODUCTO //
