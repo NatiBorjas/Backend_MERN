@@ -19,14 +19,6 @@ a {
     color: #00FFFF;
 }
 
-<<<<<<< HEAD
-#form-container {
-    width: 100%;
-    margin-top: 45px;
-}
-
-=======
->>>>>>> main
 /* ----------PRODUCTOS---------- */
 .productos-container {
     display: flex;
@@ -72,14 +64,11 @@ a {
 
 /* ----------FORMULARIO---------- */
 
-<<<<<<< HEAD
-=======
 #form-container {
     width: 100%;
     margin-top: 45px;
 }
 
->>>>>>> main
 form {    
     display: flex;
     flex-direction: column;
@@ -105,11 +94,7 @@ label {
 
 }
 
-<<<<<<< HEAD
-input, textarea {
-=======
 .input, textarea {
->>>>>>> main
     font-size: 16px;
     background-color: #0a0a23;
     color: #00FFFF;
@@ -131,8 +116,6 @@ button, input[type="submit"] {
     color: black;
 }
 
-<<<<<<< HEAD
-=======
 #stan {
     height: 160px;
 }
@@ -201,7 +184,6 @@ table {
 }
 
 
->>>>>>> main
 /* ----------PARTIALS---------- */
 header {
     display: flex;

@@ -1,10 +1,8 @@
-const fs = require('fs');
-
 //------------------------------ 
 // SERVIDOR EXPRESS y WEBSOCKS
 //------------------------------ 
 const express = require('express');
-// const {engine} = require('express-handlebars');
+const {engine} = require('express-handlebars');
 const {Router} = express;
 const app = express();
 const router = Router();
@@ -32,118 +30,49 @@ app.use(function(err,req,res,next) {
 })
 
 //------------------------------ 
-// CONFIGURACION MOTOR EJS
+// CONFIGURACION MOTOR HBS
 //------------------------------ 
 
-app.set('view engine', 'ejs');
+app.set('view engine', 'hbs');
+app.set('views', './views');
+
+app.engine(
+    'hbs',
+    engine({
+        extname: '.hbs',
+        defaultLayout: 'index.hbs',
+        layoutsDir: __dirname + '/views/layouts',
+        partialsDir: __dirname + '/views/partials'
+    })
+);
 
 //------------------------------ 
-// CLASE Y SUS METODOS
+// CREACION DE CLASES
 //------------------------------ 
-class Contenedor {
-    constructor(archivo){
-        this.archivo = "./files/productos.json";
-    }
 
-    async getAll() {
-        try {
-            const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let dataParse = JSON.parse(data)
-            return dataParse;
-        } catch (error) {
-            console.log(`Hubo un error con el archivo: ${this.archivo}`);
-        }
-    }
-
-    async save(prod) {
-        try {
-            const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let productos = JSON.parse(data);
-            const indice = productos.map(i => i.id).sort();
-            prod.id = indice[indice.length -1]+1;
-
-                if (!prod.id) {
-                    prod.id = 1;
-                    productos = [{...prod}];
-                    await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
-                    
-                    return productos[0].id
-                } else {
-                    productos.push(prod);
-                    await fs.promises.writeFile(this.archivo,JSON.stringify(productos));
-                    
-                    return productos
-                }
-        } catch (error) {
-            console.log("Hubo un error:" + error);
-        }
-    }
-    
-    // async update(id, obj) {
-    //     try {
-    //         const data = await fs.promises.readFile(this.archivo, 'utf-8');
-    //         let dataParse = JSON.parse(data)
-    //         let updateProducto = dataParse.map((e) => e.id == id ? e = {...e, ...obj} : e);
-    //         await fs.promises.writeFile(this.archivo, JSON.stringify(updateProducto));
-    //     } catch (error) {
-    //         console.log("Hubo un error:" + error);
-    //     }
-    // }
-
-    async getById(id) {
-        try {
-            const data = await fs.promises.readFile(this.archivo, 'utf-8');
-            let dataParse = JSON.parse(data);
-            let prod = dataParse.find(x => x.id == id);
-
-            if(prod.id == id) {
-                return prod;
-            } else {
-                console.log(`No se encuentra el producto con ID: ${id}`)
-            }
-        } catch (error) {
-            console.log("No pudo realizarse la busqueda por el siguiente error:\n" + error)
-        }
-    }
-    
-    // async deleteById(id) {
-    //     try {
-    //         const data = await fs.promises.readFile(this.archivo, 'utf-8');
-    //         let productos = JSON.parse(data);
-    //         let prod = productos.find(x => x.id == id);
-
-    //         if(!prod) {
-    //             console.log(`No se encuentra el objeto con Id ${id}`)
-    //         } else {
-    //             productos = productos.filter(i => i.id !== prod.id);
-    //             await fs.promises.writeFile(this.archivo, JSON.stringify(productos));
-    //             return productos
-    //         }
-
-    //     } catch (error) {
-    //         console.log("Hubo un error al intentar eliminar el objeto:\n" + error)
-    //     }
-    // }
-
-}
-
+const Contenedor = require("./src/classContenedor");
 const productos = new Contenedor('productos');
-let chat = [];
+const carritos = new Contenedor('carrito');
+
+//------------------------------ 
+//    TIMESTAMP
+//------------------------------ 
+
+const fecha = Date.now();
+const timeStamp = {"timestamp": new Date(fecha).toUTCString()};
+
 //------------------------------ 
 //    PETICIONES 
 //------------------------------ 
+let chat = [];
 
 // METODO GET ALL
 router.get('/', async (req, res) => {
     let productosAll = await productos.getAll();
         if (!productosAll) {
-            res.render('pages/error', {errorMessage: "Hubo un error en/con el archivo"});
+            res.render('error', {errorMessage: "Hubo un error con el archivo"});
         } else {
-<<<<<<< HEAD:index.js
-            res.render('pages/index', {titulo: "Listado de productos", productos: productosAll});
-=======
             res.render('productosLista', {productos: productosAll, existe: true});
->>>>>>> main:server.js
         }
     }
 );
@@ -154,25 +83,13 @@ router.get('/:id', async (req, res) => {
     const encontrado = await productos.getById(id);
     
     if (!encontrado) {
-        res.render('pages/error', {errorMessage: "Producto no encontrado"});
+        res.render('error', {errorMessage: "Producto no encontrado"});
         } else {
-            res.render('pages/unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
+            res.render('unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
         }
     }
 );
 
-<<<<<<< HEAD:index.js
-app.get('/formulario', (req,res)=> {
-    res.render('pages/formulario', {titulo: "Carga de productos"})
-})
-
-// METODO SAVE//
-router.post('/', async (req,res) => {
-    const agregado = req.body;
-    await productos.save(agregado);
-    res.render('pages/productoAgregado', {titulo: "Producto agregado exitosamente", producto: agregado});
-})
-=======
 // FORMULARIO //
 app.get('/formulario', async (req,res)=> {
     const productosLista = await productos.getAll();
@@ -243,4 +160,3 @@ io.on('connection', async (socket) => {
     });
 });
 
->>>>>>> main:server.js
