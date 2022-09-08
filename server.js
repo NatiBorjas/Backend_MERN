@@ -32,10 +32,8 @@ app.use(function(err,req,res,next) {
 //------------------------------ 
 // CONFIGURACION MOTOR HBS
 //------------------------------ 
-
 app.set('view engine', 'hbs');
 app.set('views', './views');
-
 app.engine(
     'hbs',
     engine({
@@ -50,9 +48,7 @@ app.engine(
 // CREACION DE CLASES
 //------------------------------ 
 
-const Contenedor = require("./src/classContenedor");
-const productos = new Contenedor('productos');
-// const carritos = new Contenedor('carrito');
+const {productosLista} = require("./classProducto.js");
 
 //------------------------------ 
 //    TIMESTAMP
@@ -67,8 +63,8 @@ const productos = new Contenedor('productos');
 let chat = [];
 
 // METODO GET ALL
-router.get('/', async (req, res) => {
-    let productosAll = await productos.getAll();
+router.get('/', (req, res) => {
+    let productosAll = productosLista.getAll();
         if (!productosAll) {
             res.render('error', {errorMessage: "Hubo un error con el archivo"});
         } else {

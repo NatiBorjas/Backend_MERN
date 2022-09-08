@@ -3,6 +3,7 @@
   "description": "Proyecto de Curso Backend CoderHouse",
   "version": "1.0.0",
   "main": "server.js",
+  "type": "module",
   "devDependencies": {},
   "scripts": {
     "start": "nodemon server.js",

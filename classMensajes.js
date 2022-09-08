@@ -1,10 +1,32 @@
-const fs = require('fs');
+const { optionsSQLite } = require("./options/sqlite");
+const mensajesDB = require("knex")(optionsSQLite);
 
-class Contenedor {
-    constructor(archivo){
-        this.archivo = "./files/"+archivo+".json";
+class Mensajes {
+    constructor(rutaDB, tabla){
+        this.rutaDB = rutaDB;
+        this.tabla= tabla;
     }
 
+    // CREAR TABLA // 
+    async crearTabla(nombreTabla) {
+        await this.rutaDB.schema
+            .createTable(nombreTabla, (table) => {
+                table.increments("id_msje"), 
+                table.string("email"), 
+                table.string("mensaje"), 
+                table.integer("fecha");
+            })
+            .then(() => {
+                console.log("Tabla creada exitosamente");
+            })
+            .catch((err) => {
+                console.log(err);
+                throw new Error(err);
+            })
+            .finally(() => {
+                this.rutaDB.destroy();
+            });
+    }
     async getAll() {
         try {
             const data = await fs.promises.readFile(this.archivo, 'utf-8');
@@ -82,7 +104,6 @@ class Contenedor {
             console.log("Hubo un error al intentar eliminar el objeto:\n" + error)
         }
     }
-
 }
 
-module.exports = Contenedor;
+module.exports = Mensajes;
