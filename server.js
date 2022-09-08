@@ -1,25 +1,32 @@
 //------------------------------ 
 // SERVIDOR EXPRESS y WEBSOCKS
 //------------------------------ 
-const express = require('express');
-const {engine} = require('express-handlebars');
+import express from "express";
+import {engine} from "express-handlebars";
+import { productos } from "./src/classProducto.js";
+import http from "http";
+import { Server as ioServer } from "socket.io";
 const {Router} = express;
 const app = express();
 const router = Router();
 const PORT = process.env.PORT || 8080;
-const httpServer = require("http").createServer(app);
-const io = require("socket.io")(httpServer);
+const httpServer = http.createServer(app);
+const io = new ioServer(httpServer);
 
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const server = httpServer.listen(PORT, () => {
     console.log(`Hola, soy tu servidor escuchando en el puerto [ ${server.address().port} ]`)
 });
 server.on("error", error => console.log(`Error en servidor: ${error}`));
 
-app.use(express.json());
-app.use(express.urlencoded({extended: true}));
 app.use('/api/productos', router);
 app.use('/public', express.static(__dirname + '/public'));
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 //------------------------------ 
 // MANEJO DE ERROR EN SERVIDOR
@@ -45,12 +52,6 @@ app.engine(
 );
 
 //------------------------------ 
-// CREACION DE CLASES
-//------------------------------ 
-
-const {productosLista} = require("./classProducto.js");
-
-//------------------------------ 
 //    TIMESTAMP
 //------------------------------ 
 
@@ -60,11 +61,10 @@ const {productosLista} = require("./classProducto.js");
 //------------------------------ 
 //    PETICIONES 
 //------------------------------ 
-let chat = [];
 
 // METODO GET ALL
-router.get('/', (req, res) => {
-    let productosAll = productosLista.getAll();
+router.get('/', async (req, res) => {
+    let productosAll = await productos.getAll();
         if (!productosAll) {
             res.render('error', {errorMessage: "Hubo un error con el archivo"});
         } else {
@@ -76,20 +76,22 @@ router.get('/', (req, res) => {
 // METODO GET BY ID //
 router.get('/:id', async (req, res) => {
     const {id} = req.params;
-    const encontrado = await productos.getById(id);
-    
-    if (!encontrado) {
-        res.render('error', {errorMessage: "Producto no encontrado"});
-        } else {
-            res.render('unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
-        }
+    const data = await productos.getById(id);
+    console.log(data)
+    // const encontrado = 
+    // console.log(data)
+    // if (!encontrado) {
+    //     res.render('error', {errorMessage: "Producto no encontrado"});
+    //     } else {
+    //         res.render('unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
+    //     }
     }
 );
 
 // FORMULARIO //
 app.get('/formulario', async (req,res)=> {
-    const productosLista = await productos.getAll();
-    io.sockets.emit("productos", productosLista );
+    const productos = await productos.getAll();
+    io.sockets.emit("productos", productos );
     res.render('formulario');
 })
 
@@ -133,11 +135,11 @@ app.get('/formulario', async (req,res)=> {
 //------------------------------ 
 
 io.on('connection', async (socket) => {
-    const productosLista = await productos.getAll();
-    io.sockets.emit("productos", productosLista );
+    // const productosLista = await productos.getAll();
+    // io.sockets.emit("productos", productosLista );
 
-    chat.push('Usuarix conectadx: ' + socket.id);
-    io.sockets.emit("arr-chat", chat);
+    // chat.push('Usuarix conectadx: ' + socket.id);
+    // io.sockets.emit("arr-chat", chat);
 
     socket.on('nuevoMensaje',(mensaje)=>{
         chat.push(mensaje);
