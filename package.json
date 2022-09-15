@@ -1,25 +1,25 @@
 {
-  "dependencies": {
-    "express": "^4.18.1"
-  },
-  "name": "backend_mern",
-  "description": "Proyecto de Curso Backend CoderHouse",
-  "version": "1.0.0",
-  "main": "server.js",
-  "devDependencies": {},
-  "scripts": {
+	"name": "backend_mern",
+	"description": "Proyecto de Curso Backend CoderHouse",
+	"version": "1.0.0",
+	"main": "server.js",
+	"devDependencies": {},
+	"scripts": {
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
+	},
+	"dependencies": {
+    "express": "^4.18.1"
+	},
+	"repository": {
     "type": "git",
     "url": "git+https://github.com/NatiBorjas/Backend_MERN.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
     "url": "https://github.com/NatiBorjas/Backend_MERN/issues"
-  },
-  "homepage": "https://github.com/NatiBorjas/Backend_MERN#readme"
+	},
+	"homepage": "https://github.com/NatiBorjas/Backend_MERN#readme"
 }
