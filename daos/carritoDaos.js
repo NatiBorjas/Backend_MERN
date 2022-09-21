@@ -8,7 +8,8 @@ class Carrito {
     constructor(){
 		admin.initializeApp({
             credential: admin.credential.cert(config),
-            databaseURL: 'https://db-backend-30221-default-rtdb.firebaseio.com'
+            // databaseURL: 'https://db-backend-30221-default-rtdb.firebaseio.com'
+			databaeURL: 'https://db-backend-30221.firebaseio.com'
         })
     }
 

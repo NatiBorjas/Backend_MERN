@@ -2,14 +2,29 @@ const express = require('express');
 const {carritoDaos: Carrito} = require('../daos/mainDaos');
 const routerCarrito = express.Router();
 
-const carrito = new Contenedor('carrito');
+const Carro = new Carrito();
 
 // CREAR CARRITO VACIO //
 routerCarrito.post("/", async (req,res) => {
-    let productos = {"productos": []};
-    let nuevoCarrito = {...productos, ...timeStamp};
-    await carritos.save(nuevoCarrito);
-    res.json({success: "ok", mensaje: `Carrito creado con id: ${nuevoCarrito.id}`});
+	try {
+		const carrito = await Carro.nuevoCarrito();
+		res.status(200).send({
+			status: 200,
+			data: {
+				carrito,
+			}
+		});
+	} catch (error) {
+		res.status(500).send({
+            status: 500,
+            message: error.message
+        })
+	}
+
+    // let productos = {"productos": []};
+    // let nuevoCarrito = {...productos, ...timeStamp};
+    // await carritos.save(nuevoCarrito);
+    // res.json({success: "ok", mensaje: `Carrito creado con id: ${nuevoCarrito.id}`});
     }
 );
 
@@ -28,6 +43,20 @@ routerCarrito.get("/:id/productos", async (req, res) => {
 
 // AGREGAR PRODUCTO (POR SU ID) AL CARRITO//
 routerCarrito.post("/:id/productos", async (req, res) => {
+	try {
+		const {id} = req.params;
+		const {body} = req;
+		let productoAgregar = await productos.getById(body.id);
+		let carritoActualizar = await carritos.getById(id);
+		
+		const agregado = await Carro.agregarProducto()
+	} catch (error) {
+		res.status(500).send({
+            status: 500,
+            message: error.message
+        })
+	}
+
     const {id} = req.params;
     const {body} = req;
     let productoAgregar = await productos.getById(body.id);
@@ -37,26 +66,35 @@ routerCarrito.post("/:id/productos", async (req, res) => {
         carritoActualizar.productos.push(productoAgregar);
         carritos.update(id, carritoActualizar);
         res.json({success: "ok", mensaje: `Se agrego el producto ${productoAgregar.nombre}`});
-    } else {
-        res.json({error: `Producto con id ${body.id} no encontrado`});
     }
 });
 
 // ELIMINAR CARRITO POR SU ID //
 routerCarrito.delete("/:id", async (req, res) => {
-    const {id} = req.params;
-    let carritoBorrar = await carritos.getById(id);
-
-    if (carritoBorrar) {
-        carritos.deleteById(id);
-        res.json({success: "ok", mensaje: "Carrito eliminado correctamente"});
-    } else {
-        res.json({mensaje: `No se encontro el carrito con id ${id}`});      
-    }
+	const {id} = req.params;
+	try {
+		const eliminado = await Carro.deleteById(id)	
+		res.status(200).send({
+			status: 200,
+			data: {
+				eliminado
+			},
+			message: "Carrito eliminado correctamente"
+		})
+	} catch (error) {
+		res.status(500).send({
+            status: 500,
+            message: error.message
+        })
+	}
 });
 
 // ELIMINAR PRODUCTO (POR SU ID) DEL CARRITO //
 routerCarrito.delete("/:id/productos/:id_prod", async (req, res) => {
+
+
+
+
     const {id, id_prod} = req.params;
     let carritoActualizar = await carritos.getById(id);
     let productoEliminar = await productos.getById(id_prod);

@@ -3,15 +3,43 @@ const {productosDaos: Producto} = require('../daos/mainDaos');
 const routerProductos = express.Router();
 
 // LISTA PRODUCTOS (GET ALL)
-routerProductos.get('/', async (req, res) => {
-    let productosAll = await productos.getAll();
-        if (!productosAll) {
-            res.json({error: "Hubo un error en el archivo."});
-        } else {
-            res.json({titulo: "Listado de productos", productos: productosAll})
-        }
-    }
-);
+routerProductos.get('/:id', async (req, res) => {
+		const id = req.params.id;
+		const producto = new Producto();
+		if (id === "all") {
+			try {
+				const productos = await producto.getAll();
+				res.status(200).send({
+					status: 200,
+					data: {
+						productos
+					},
+					message: "Listado de productos"
+				});
+			} catch (error) {
+				res.status(500).send({
+					status: 500,
+					message: error.message
+				})				
+			}
+		} else {
+			try {
+				const prod = await producto.getById(id)
+				res.status(200).send({
+					status: 200,
+					data: {
+						prod
+					},
+					message: "detalle de producto"
+				})
+			} catch (error) {
+				res.status(500).send({
+					status: 500,
+					message: error.message
+			})
+		}
+	}
+})
 
 // PRODUCTO POR ID (GET BY ID) //
 routerProductos.get('/:id', async (req, res) => {
