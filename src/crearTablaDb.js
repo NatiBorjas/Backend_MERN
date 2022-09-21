@@ -1,22 +1,23 @@
-import knex from "knex";
-import { options } from "./options/configDB.js";
 
-const knexProd = knex(options.mariaDB);
-const knexChat = knex(options.sqliteDB);
+const { options } = require("../options/configDB") ;
 
-export const crearTablaProd = async () => {
-    try {
-        await knexProd.schema.createTableIfNotExists("productos", (table) => {
-            table.increments("id_prod"), 
-            table.string("nombre"), 
-            table.string("descripcion"), 
-            table.integer("precio");
-            table.string("img");
-            table.integer("stock");        
-        })
-        .then(() => {
-            console.log("Tabla creada exitosamente");
-        })
+const knexProd = require("knex")(options.mariaDB);
+const knexChat = require("knex")(options.sqliteDB);
+
+const crearTablaProductos = async () => {
+        return await knexProd.schema.hasTable("productos")
+		.then(function(exists){
+			if (!exists) {
+				return knexProd.schema.createTable("productos", (table) => {
+				table.increments("id_prod"), 
+				table.string("nombre"), 
+				table.string("descripcion"), 
+				table.integer("precio");
+				table.string("img");
+				table.integer("stock");  
+				})
+			}
+		})
         .catch((err) => {
             console.log(err);
             throw new Error(err);
@@ -24,18 +25,20 @@ export const crearTablaProd = async () => {
         .finally(() => {
             knexProd.destroy();
         });
-    } catch (error) {
-        console.log(error)
-    };
 };
-export const crearTablaChat = async () => {
-    try {
-        await knexChat.schema.createTableIfNotExists("chat", (table) => {
-            table.increments("id_msje"), 
-            table.string("correo"), 
-            table.string("mensaje"), 
-            table.string("fecha")
-        })
+
+const crearTablaMensajes = async () => {
+        return await knexChat.schema.hasTable("mensajes")
+		.then(function(exists){
+			if (!exists) {
+				return knexChat.schema.createTable("mensajes", (table) => {
+					table.increments("id_msje"), 
+					table.string("correo"), 
+					table.string("mensaje"), 
+					table.string("fecha")  
+				})
+			}
+		})
         .catch((err) => {
             console.log(err);
             throw new Error(err);
@@ -43,7 +46,6 @@ export const crearTablaChat = async () => {
         .finally(() => {
             knexChat.destroy();
         });
-    } catch (error) {
-        console.log(error)
-    };
 };
+
+module.exports = {crearTablaMensajes, crearTablaProductos}

@@ -1,4 +1,4 @@
-export const options = {
+const options = {
     mariaDB: {
         client: "mysql",
         connection: {
@@ -16,3 +16,5 @@ export const options = {
         useNullAsDefault: true,
     }
 }
+
+module.exports = {options}
