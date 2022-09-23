@@ -1,13 +1,12 @@
-socket.on('arr-chat', (data)=>{
-    console.log(data)
-    const html = data.reduce((html, item)=> 
-    '<div class="mensaje">' + item + '<div/>' + html, "");
-    document.getElementById('chat-history').innerHTML = html;
-})
 
-// socket.on('data-generica', (data)=>{
-//     console.log(data);
-// }) class""
+const socket = io();
+
+socket.on('arr-chat', (data)=>{
+    console.log("data", data)
+    const html = data.reduce((html, item)=> 
+    '<div class="mensaje">' + `${item.correo}: ` + ` ${item.mensaje} ` + ` ${item.fecha}` + '<div/>' + html, "");
+    document.getElementById('arr-chat').innerHTML = html;
+})
 
 socket.on('productos', (data)=>{
     let productosLista = data.reduce((lista, item) => lista + `
@@ -16,7 +15,6 @@ socket.on('productos', (data)=>{
         <td>${item.precio}</td>
         <td><img src="${item.img}"/></td>
     </tr>`, '')
-    
     document.querySelector('tbody').innerHTML = productosLista;
 });
 
@@ -29,9 +27,11 @@ function agregar(){
 }
 
 function enviar(){
-    const correo = document.getElementById("caja-correo").value;
-    const msg = document.getElementById("caja-msg").value;
-    let fecha = new Date().toLocaleDateString();
-    socket.emit('nuevoMensaje', correo +  " [" + fecha + "] : " + msg);
+	let mensaje = {
+		correo: document.getElementById("caja-correo").value,
+		mensaje: document.getElementById("caja-msg").value,
+		fecha: new Date().toLocaleDateString()
+	}
+    socket.emit('nuevoMensaje', mensaje);
     return false;
 }

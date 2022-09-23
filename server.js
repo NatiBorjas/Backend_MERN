@@ -35,12 +35,6 @@ router.get('/:id', async (req, res) => {
     }
 );
 
-// FORMULARIO //
-app.get('/formulario', async (req,res)=> {
-    const productos = await productos.getAll();
-    io.sockets.emit("productos", productos );
-    res.render('formulario');
-})
 
 // METODO SAVE//
 // router.post('/', async (req,res) => {
@@ -75,33 +69,4 @@ app.get('/formulario', async (req,res)=> {
 //         res.json({mensaje: "Se ha elliminado el producto correctamente."});
 //     }
 // });
-
-
-//------------------------------ 
-//    WEBSOCKS
-//------------------------------ 
-
-io.on('connection', async (socket) => {
-    // const productosLista = await productos.getAll();
-    // io.sockets.emit("productos", productosLista );
-
-    // chat.push('Usuarix conectadx: ' + socket.id);
-    // io.sockets.emit("arr-chat", chat);
-
-    socket.on('nuevoMensaje',(mensaje)=>{
-        chat.push(mensaje);
-        io.sockets.emit("arr-chat", chat);
-    });
-    
-    socket.on('data-generica',(data)=>{
-        chat.push(data);
-        io.sockets.emit("arr-chat", chat)
-    });
-
-    socket.on('nuevoProducto', async (data) => {
-        await productos.save(data);
-        let agregado = await productos.getAll();
-        io.sockets.emit("productos", agregado )
-    });
-});
 

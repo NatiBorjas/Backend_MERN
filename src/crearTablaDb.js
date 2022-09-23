@@ -5,7 +5,7 @@ const knexProd = require("knex")(options.mariaDB);
 const knexChat = require("knex")(options.sqliteDB);
 
 const crearTablaProductos = async () => {
-        return await knexProd.schema.hasTable("productos")
+        await knexProd.schema.hasTable("productos")
 		.then(function(exists){
 			if (!exists) {
 				return knexProd.schema.createTable("productos", (table) => {
@@ -16,6 +16,7 @@ const crearTablaProductos = async () => {
 				table.string("img");
 				table.integer("stock");  
 				})
+			} else {
 			}
 		})
         .catch((err) => {
@@ -28,7 +29,7 @@ const crearTablaProductos = async () => {
 };
 
 const crearTablaMensajes = async () => {
-        return await knexChat.schema.hasTable("mensajes")
+        await knexChat.schema.hasTable("mensajes")
 		.then(function(exists){
 			if (!exists) {
 				return knexChat.schema.createTable("mensajes", (table) => {
@@ -37,6 +38,7 @@ const crearTablaMensajes = async () => {
 					table.string("mensaje"), 
 					table.string("fecha")  
 				})
+			} else {
 			}
 		})
         .catch((err) => {

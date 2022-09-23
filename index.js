@@ -15,6 +15,7 @@ const server = httpServer.listen(PORT, () => {
 server.on("error", error => console.log(`Error en servidor: ${error}`));
 
 app.use('/api/productos', router);
+app.use('/api/formulario', router);
 app.use('/public', express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -54,7 +55,6 @@ const { crearTablaProductos , crearTablaMensajes } = require('./src/crearTablaDb
 
 router.get('/', async (req, res) => {
 	try {
-		crearTablaMensajes();
 		crearTablaProductos();
 		let productosAll = await productos.getAll();
         if (!productosAll) {
@@ -70,10 +70,44 @@ router.get('/', async (req, res) => {
 	}}
 );
 
+// FORMULARIO //
+app.get('/formulario', async (req,res)=> {
+	try {
+		let productosAll = await productos.getAll();
+		io.sockets.emit("productos", productosAll );
+		res.render('formulario');
+	} catch (error) {
+        res.status(500).send({
+            status: 500,
+            message: error.message
+        })			
+	}
+})
 
 
+io.on('connection', async (socket) => {
+    console.log("me conecte!");
 
+    let productosLista = await productos.getAll();
+	let chatData = await mensajes.getAll();
 
+    io.sockets.emit("productos", productosLista );
+	io.sockets.emit("arr-chat", chatData );
+    // chat.push('Usuarix conectadx: ' + socket.id);
+    // io.sockets.emit("arr-chat", chat);
+
+    socket.on('nuevoMensaje', async (mensaje)=>{
+        await mensajes.save(mensaje);
+		let chat = await mensajes.getAll();
+        io.sockets.emit("arr-chat", chat);
+    });
+
+    socket.on('nuevoProducto', async (data) => {
+        await productos.save(data);
+        let agregado = await productos.getAll();
+        io.sockets.emit("productos", agregado )
+    });
+});
 // CREAR PRODUCTOS // 
 // const productos = [
 //     { nombre: "cartera", precio: 100, stock: 12 },
