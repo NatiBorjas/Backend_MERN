@@ -1,4 +1,3 @@
-// DBS CONF //
 const express = require("express");
 const {engine} = require("express-handlebars");
 const { Router } = express;
@@ -53,6 +52,8 @@ const mensajes = new KnexContenedor(knexChat, "mensajes");
 
 const { crearTablaProductos , crearTablaMensajes } = require('./src/crearTablaDb');
 
+// PETICIONES // 
+
 router.get('/', async (req, res) => {
 	try {
 		crearTablaProductos();
@@ -73,9 +74,15 @@ router.get('/', async (req, res) => {
 // FORMULARIO //
 app.get('/formulario', async (req,res)=> {
 	try {
+		let admin = true;
+		if (!admin){
+			res.json({mensaje: "Acceso denegado"})
+		} else {
+		crearTablaMensajes();
 		let productosAll = await productos.getAll();
 		io.sockets.emit("productos", productosAll );
 		res.render('formulario');
+		}
 	} catch (error) {
         res.status(500).send({
             status: 500,
@@ -93,8 +100,6 @@ io.on('connection', async (socket) => {
 
     io.sockets.emit("productos", productosLista );
 	io.sockets.emit("arr-chat", chatData );
-    // chat.push('Usuarix conectadx: ' + socket.id);
-    // io.sockets.emit("arr-chat", chat);
 
     socket.on('nuevoMensaje', async (mensaje)=>{
         await mensajes.save(mensaje);
@@ -108,32 +113,3 @@ io.on('connection', async (socket) => {
         io.sockets.emit("productos", agregado )
     });
 });
-// CREAR PRODUCTOS // 
-// const productos = [
-//     { nombre: "cartera", precio: 100, stock: 12 },
-//     { nombre: "pelota", precio: 11, stock: 2 },
-//     { nombre: "zapato", precio: 500, stock: 25 },
-// ];
-
-// AGREGAR PRODUCTOS // 
-// knex("productos")
-//     .insert(productos)
-//     .then((res) => console.log("todo ok", res))
-//     .catch((e) => console.log(e))
-//     .finally(() => knex.destroy());
-
-// BUSCAR PRODUCTOS // 
-// knex
-//     .from("productos")
-//     .select("*")
-//     .then((res) => {
-//         // res = res.map((item) => ({
-//         // idProduct: item["id_prod"],
-//         // nombre: item.nombre,
-//         // precio: item.precio,
-//         // stock: item.stock,
-//         // })); 
-//         res.forEach((item) => console.log(item));
-//     })
-//     .catch((e) => console.log(e))
-//     .finally(() => knex.destroy());

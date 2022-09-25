@@ -1,9 +1,3 @@
-//------------------------------ 
-//    TIMESTAMP
-//------------------------------ 
-
-// const fecha = Date.now();
-// const timeStamp = {"timestamp": new Date(fecha).toUTCString()};
 
 //------------------------------ 
 //    PETICIONES 

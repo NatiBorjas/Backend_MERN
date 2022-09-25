@@ -23,9 +23,6 @@ const crearTablaProductos = async () => {
             console.log(err);
             throw new Error(err);
         })
-        .finally(() => {
-            knexProd.destroy();
-        });
 };
 
 const crearTablaMensajes = async () => {
@@ -38,16 +35,12 @@ const crearTablaMensajes = async () => {
 					table.string("mensaje"), 
 					table.string("fecha")  
 				})
-			} else {
 			}
 		})
         .catch((err) => {
             console.log(err);
             throw new Error(err);
         })
-        .finally(() => {
-            knexChat.destroy();
-        });
 };
 
 module.exports = {crearTablaMensajes, crearTablaProductos}
