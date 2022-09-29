@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const prodEsquema = require('./modelsDB/productoSchema')
 
 class Producto {
-	async connectMDB() {
+	connectMDB() {
         try {
-            const URL = "mongodb+srv://admin:admin.456@ecommerce.dsjesne.mongodb.net/?retryWrites=true&w=majority"
-            let rta = await mongoose.connect(URL, {
+            const URL = "mongodb+srv://admin:admin123@ecommerce.nflhe41.mongodb.net/?retryWrites=true&w=majority"
+            let rta = mongoose.connect(URL, {
                 useNewUrlParser: true,
                 useUniFiedTopology: true
             })
@@ -27,9 +27,9 @@ class Producto {
 
     async save(item) {
         try {
-			const fecha = Date.now();
+			const date = Date.now();
 			await this.connectMDB();
-			item.time = new Date(fecha).toUTCString();
+			item.fecha = new Date(date).toUTCString();
 			await prodEsquema.create(item);
 			const id = item.prod_id;
 			mongoose.disconnect();
@@ -39,7 +39,7 @@ class Producto {
         }
     }
     
-    async update(id, obj) {
+    async updateById(id, obj) {
         try {
 			await this.connectMDB();
 			const cambio = await prodEsquema.updateOne({prod_id: id}, {$set: obj});
@@ -66,7 +66,7 @@ class Producto {
 			await this.connectMDB();
 			const eliminado = await prodEsquema.deleteOne({prod_id: id})
 			mongoose.disconnect();
-			return prod
+			return eliminado
         } catch (error) {
             throw Error(error.message);
         }

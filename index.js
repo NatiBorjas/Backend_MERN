@@ -1,3 +1,4 @@
+/* SERVIDOR EXPRESS */
 const express = require('express');
 const routerProductos = require('./routers/productos.js');
 const routerCarrito = require('./routers/carrito.js');
@@ -9,19 +10,17 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 if(acceso === true) {
-app.use('/api/productos', routerProductos);
 app.use('/api/carrito', routerCarrito);
+app.use('/api/productos', routerProductos);
 }
- else {
- onsole.log("no tiene acceso")
- }
+else {
+	console.log("no tiene acceso")
+}
 
+/* SERVIDOR ESCUCHANDO */
 const PORT = process.env.PORT || 8080;
 const server = app.listen(PORT, () => {console.log(`Servidor escuchando en el puerto [ ${server.address().port} ]`)});
 server.on("error", error => console.log(`Error en servidor: ${error}`));
-
-
-app.use('/public', express.static(__dirname + '/public'));
 
 //------------------------------ 
 // MANEJO DE ERROR EN SERVIDOR
