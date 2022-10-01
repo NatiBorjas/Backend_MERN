@@ -42,7 +42,7 @@ class Producto {
     async updateById(id, obj) {
         try {
 			await this.connectMDB();
-			const cambio = await prodEsquema.updateOne({prod_id: id}, {$set: obj});
+			const cambio = await prodEsquema.updateOne({_id: id}, {$set: obj});
 			mongoose.disconnect();
 			return cambio
         } catch (error) {
@@ -64,7 +64,7 @@ class Producto {
     async deleteById(id) {
         try {
 			await this.connectMDB();
-			const eliminado = await prodEsquema.deleteOne({prod_id: id})
+			const eliminado = await prodEsquema.deleteOne({_id: id})
 			mongoose.disconnect();
 			return eliminado
         } catch (error) {

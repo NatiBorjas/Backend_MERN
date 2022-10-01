@@ -1,5 +1,8 @@
 const admin = require('firebase-admin')
-const config = require('./bd/carrito-firebase.json')
+const {initializeApp} = require('firebase/app')
+const {app, firebaseConfig} = require('./bd/config');
+// const config = require('./bd/carrito-firebase.json')
+const {getDoc, getFirestore, doc, collection} = require('firebase/firestore')
 const Producto = require('./productoDaos')
 
 const Productos = new Producto();
@@ -7,7 +10,7 @@ const Productos = new Producto();
 class Carrito {
     constructor(){
 		admin.initializeApp({
-            credential: admin.credential.cert(config),
+            credential: admin.credential.cert(firebaseConfig),
             databaseURL: 'https://ecommerce-28.firebaseio.com'
         })
     }
@@ -20,14 +23,23 @@ class Carrito {
 			function random (min, max) {
                 return Math.floor((Math.random() * (max - min + 1)) + min);
             }
-			const doc = query.doc();
+			const nuevo = query.doc();
 			const carritoId = random(1,150);
-			const carrito = await doc.create({
+			const carritoNuevo = await nuevo.create({
 				time: fecha.toUTCString(),
 				productos: [],
 				cart_id: carritoId
 			});
-			return carrito
+			const appFirestore = getFirestore(app);
+			const colRef = doc(appFirestore, 'carritos', carritoNuevo.cart_id);
+			// const detalle = doc(query, "carritos", carritoNuevo.cart_id);
+			const docSnap = await getDoc(colRef)
+			// .then((snapshot) => {
+			// 	if(snapshot.exists) {
+			// 		return snapshot.data();
+			// 	}
+			// })
+			return docSnap.data()
 			
         } catch (error) {
             throw Error(error.message);
@@ -52,8 +64,6 @@ class Carrito {
 			const agregado = await doc.update({
 				productos: admin.firestore.FieldValue.arrayUnion(String(prod))
 			});
-
-			return agregado
         } catch (error) {
             throw Error(error.message);
         }
@@ -62,19 +72,32 @@ class Carrito {
     async getAll() {
         try {
 			const db = admin.firestore();
-			db.collection('carritos').get()
-			.then((querySnapshot) => {
-				querySnapshot.forEach(function(doc) {
-					console.log(doc.id, "=>", doc.data());
-				})
-				})
+			const detail = doc(db, "carritos");
+			
+			// db.collection('carritos').get()
+			// .then((querySnapshot) => {
+			// 	querySnapshot.forEach(function(doc) {
+			// 		console.log(doc.id, "=>", doc.data());
+			// 	})
+			// 	})
 			// return carritos
         } catch (error) {
             throw Error(error.message);
         }
     }
 
-
+    async getById(cart_id) {
+        try {
+			const db = admin.firestore();
+			const query = db.collection('carritos');
+			const doc = query.doc(String(cart_id));
+			const encontrado = await doc.get();
+			return encontrado.data();
+        } catch (error) {
+            throw Error(error.message);
+        }
+    }
+    
     async deleteProductById(cart_id, prod_id, enCarrito_id) {
         try {
 			let prod = await Productos.getById(prod_id);

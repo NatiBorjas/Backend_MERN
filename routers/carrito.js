@@ -43,10 +43,11 @@ routerCarrito.get("/", async (req,res) => {
     }
 );
 
-routerCarrito.delete('/carrito/:id', async function(req, res){
+// ELIMINAR CARRITO //
+routerCarrito.delete('/:id', async function(req, res){
     const num = req.params.id
     try {
-        const borrado = await Carro.deleteCarritoById(num)
+        const borrado = await Carro.deleteById(num)
         res.status(200).send({
             status: 200,
             data: {
@@ -62,15 +63,17 @@ routerCarrito.delete('/carrito/:id', async function(req, res){
     }
 });
 
+// AGREGAR PRODUCTO //
 routerCarrito.post('/productos', async function(req, res){
     try {
             let idCarrito = req.body.cart_id
-            let idProducto = req.body._id
-            const agregado = await Carro.agregarProducto(idCarrito, idProducto)
+            let idProducto = req.body.prod_id
+            await Carro.agregarProducto(idCarrito, idProducto);
+			const detalle = await Carro.getById(idProducto)
             res.status(200).send({
                 status: 200,
                 data: {
-                    agregado,
+                    detalle,
                 },
                 message:'producto agregado a carrito'
                 })
@@ -82,14 +85,14 @@ routerCarrito.post('/productos', async function(req, res){
         }
 });
 
-
-routerCarrito.delete('/eliminarProducto/:idC', async function(req, res){
+//BORRAR PRODUCTO DE CARRITO //
+routerCarrito.delete('/borrarProd/:idC', async function(req, res){
     const idCart = req.params.idC
     try {
         let idCarrito = req.body.idCart
         let idProducto = req.body.idP
         let idEnCarrito = idCart
-        const agregado = await Carro.deleteProductoDeCarrito(idCarrito, idProducto, idEnCarrito)
+        const agregado = await Carro.deleteProductById(idCarrito, idProducto, idEnCarrito)
         res.status(200).send({
             status: 200,
             data: {
