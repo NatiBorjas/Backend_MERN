@@ -1,26 +1,26 @@
 [
-    {
-        "time": "Fri, 02 Sep 2022 21:04:02 GMT",
-        "name": "Espada Slashmaster",
-        "description": "No hay pirata sin espada, y 'Cuando quieres una espada tan afildad como tu ingenio', necesitas una Slashmaster. Gana los duelos de insultos sin compasión.",
-        "price": 100,
-        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/provisiones-stan.appspot.com/o/espada.png?alt=media&token=3295edb1-faff-4ca7-9df9-047ad1d3147f",
-        "stock": 50
-    },
-    {
-        "time": "Fri, 02 Sep 2022 18:39:47 GMT",
-        "name": "Cabeza de mono",
-        "description": "Una valiosa pieza de arte hecha en madera del siglo XVII que perteneció al barco 'Mad Monkey' hundido en el Mar de los Ladrones. Serás la envidia del caribe con esta cabeza de mono decorando tu barco.",
-        "price": 8000,
-        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/provisiones-stan.appspot.com/o/cabezademono.png?alt=media&token=2f08fc8e-0db2-498b-8f12-570aa6b2dbba",
-        "stock": 5
-    },
-    {
-        "time": "Fri, 02 Sep 2022 18:41:44 GMT",
-        "name": "Mapa del Big Whoop",
-        "description": "Una de las cuatro partes en que fue dividido el mapa del Big Whoop, que fueron repartidas entre la tripulación del capitan Marley. Ésta perteneció a Rum Rogers, quién siempre lo mantuvo con él, aún despues de muerto. Hazte con el tesoro más codiciado!.",
-        "price": 6500,
-        "thumbnail": "https://firebasestorage.googleapis.com/v0/b/provisiones-stan.appspot.com/o/mapa.png?alt=media&token=fa87e414-ca8a-4326-b27e-054be56879da",
-        "stock": 1
-    }
+  {
+    "time": "Fri, 02 Sep 2022 21:04:02 GMT",
+    "name": "Espada Slashmaster",
+    "description": "No hay pirata sin espada, y 'Cuando quieres una espada tan afildad como tu ingenio', necesitas una Slashmaster. Gana los duelos de insultos sin compasión.",
+    "price": 100,
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/provisiones-stan.appspot.com/o/espada.png?alt=media&token=3295edb1-faff-4ca7-9df9-047ad1d3147f",
+    "stock": 50
+  },
+  {
+    "time": "Fri, 02 Sep 2022 18:39:47 GMT",
+    "name": "Cabeza de mono",
+    "description": "Una valiosa pieza de arte hecha en madera del siglo XVII que perteneció al barco 'Mad Monkey' hundido en el Mar de los Ladrones. Serás la envidia del caribe con esta cabeza de mono decorando tu barco.",
+    "price": 8000,
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/provisiones-stan.appspot.com/o/cabezademono.png?alt=media&token=2f08fc8e-0db2-498b-8f12-570aa6b2dbba",
+    "stock": 5
+  },
+  {
+    "time": "Fri, 02 Sep 2022 18:41:44 GMT",
+    "name": "Mapa del Big Whoop",
+    "description": "Una de las cuatro partes en que fue dividido el mapa del Big Whoop, que fueron repartidas entre la tripulación del capitan Marley. Ésta perteneció a Rum Rogers, quién siempre lo mantuvo con él, aún despues de muerto. Hazte con el tesoro más codiciado!.",
+    "price": 6500,
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/provisiones-stan.appspot.com/o/mapa.png?alt=media&token=fa87e414-ca8a-4326-b27e-054be56879da",
+    "stock": 1
+  }
 ]
