@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 8080;
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer);
 
+// const {routerApi} = require('./router/apiProducts');
 
 const server = httpServer.listen(PORT, () => {
   console.log(`Hola, soy tu servidor escuchando en el puerto [ ${server.address().port} ]`)
@@ -15,6 +16,7 @@ server.on("error", error => console.log(`Error en servidor: ${error}`));
 
 app.use('/api/productos', router);
 app.use('/api/formulario', router);
+app.use('/api/productos-test', router);
 app.use('/public', express.static(__dirname + '/public'));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -38,7 +40,6 @@ app.engine(
     partialsDir: __dirname + '/views/partials'
   })
 );
-
 
 // CREAR TABLA // 
 const KnexContenedor = require('./src/classKnex');
@@ -91,7 +92,7 @@ app.get('/formulario', async (req,res)=> {
 	}
 })
 
-
+// SOCKETS //
 io.on('connection', async (socket) => {
   console.log("me conecte!");
 
