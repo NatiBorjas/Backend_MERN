@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //------------------------------ 
 // SERVIDOR EXPRESS
 //------------------------------ 
@@ -40,6 +41,11 @@ const carritos = new Contenedor('carrito');
 
 //------------------------------ 
 //    TIMESTAMP
+=======
+
+//------------------------------ 
+//    PETICIONES 
+>>>>>>> databases
 //------------------------------ 
 
 const fecha = Date.now();
@@ -59,7 +65,11 @@ let admin = true;
 routerProductos.get('/', async (req, res) => {
     let productosAll = await productos.getAll();
         if (!productosAll) {
+<<<<<<< HEAD
             res.json({error: "Hubo un error en el archivo."});
+=======
+            res.render('error', {errorMessage: "Hubo un error con el archivo"});
+>>>>>>> databases
         } else {
             res.json({titulo: "Listado de productos", productos: productosAll})
         }
@@ -69,6 +79,7 @@ routerProductos.get('/', async (req, res) => {
 // PRODUCTO POR ID (GET BY ID) //
 routerProductos.get('/:id', async (req, res) => {
     const {id} = req.params;
+<<<<<<< HEAD
     const encontrado = await productos.getById(id);
     
     if (!encontrado) {
@@ -95,6 +106,20 @@ routerProductos.post('/',
         res.json({success: "ok", producto: agregado});
     }
 )
+=======
+    const data = await productos.getById(id);
+    console.log(data)
+    // const encontrado = 
+    // console.log(data)
+    // if (!encontrado) {
+    //     res.render('error', {errorMessage: "Producto no encontrado"});
+    //     } else {
+    //         res.render('unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
+    //     }
+    }
+);
+
+>>>>>>> databases
 
 // ACTUALIZAR UN PRODUCTO (PUT) //
 routerProductos.put('/:id', 
@@ -120,6 +145,7 @@ routerProductos.put('/:id',
     }
 );
 
+<<<<<<< HEAD
 // ELIMINAR UN PRODUCTO (DELETE) //
 routerProductos.delete('/:id', 
     (req, res, next) => {
@@ -211,3 +237,5 @@ routerCarrito.delete("/:id/productos/:id_prod", async (req, res) => {
         res.json({error: `No se encontro el producto con id ${id_prod}`});          
     }
 });
+=======
+>>>>>>> databases
