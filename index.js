@@ -9,7 +9,7 @@ const io = require("socket.io")(httpServer);
 
 
 const server = httpServer.listen(PORT, () => {
-    console.log(`Hola, soy tu servidor escuchando en el puerto [ ${server.address().port} ]`)
+  console.log(`Hola, soy tu servidor escuchando en el puerto [ ${server.address().port} ]`)
 });
 server.on("error", error => console.log(`Error en servidor: ${error}`));
 
@@ -20,8 +20,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use(function(err,req,res,next) {
-    console.log(err.stack);
-    res.status(500).send('Somenthing broke');
+  console.log(err.stack);
+  res.status(500).send('Somenthing broke');
 })
 
 //------------------------------ 
@@ -30,13 +30,13 @@ app.use(function(err,req,res,next) {
 app.set('view engine', 'hbs');
 app.set('views', './views');
 app.engine(
-    'hbs',
-    engine({
-        extname: '.hbs',
-        defaultLayout: 'index.hbs',
-        layoutsDir: __dirname + '/views/layouts',
-        partialsDir: __dirname + '/views/partials'
-    })
+  'hbs',
+  engine({
+		extname: '.hbs',
+		defaultLayout: 'index.hbs',
+    layoutsDir: __dirname + '/views/layouts',
+    partialsDir: __dirname + '/views/partials'
+  })
 );
 
 
@@ -58,16 +58,16 @@ router.get('/', async (req, res) => {
 	try {
 		crearTablaProductos();
 		let productosAll = await productos.getAll();
-        if (!productosAll) {
-            res.json('error', {errorMessage: "Hubo un error con el archivo"});
-        } else {
-            res.render('productosLista', {productos: productosAll, existe: true});
-        }
+    if (!productosAll) {        
+			res.json('error', {errorMessage: "Hubo un error con el archivo"});
+    } else {
+      res.render('productosLista', {productos: productosAll, existe: true});
+    }
 	} catch (error) {
-        res.status(500).send({
-            status: 500,
-            message: error.message
-        })		
+    res.status(500).send({
+      status: 500,
+      message: error.message
+    })		
 	}}
 );
 
@@ -84,32 +84,32 @@ app.get('/formulario', async (req,res)=> {
 		res.render('formulario');
 		}
 	} catch (error) {
-        res.status(500).send({
-            status: 500,
-            message: error.message
-        })			
+    res.status(500).send({
+      status: 500,
+      message: error.message
+    })			
 	}
 })
 
 
 io.on('connection', async (socket) => {
-    console.log("me conecte!");
+  console.log("me conecte!");
 
-    let productosLista = await productos.getAll();
+  let productosLista = await productos.getAll();
 	let chatData = await mensajes.getAll();
 
-    io.sockets.emit("productos", productosLista );
+  io.sockets.emit("productos", productosLista );
 	io.sockets.emit("arr-chat", chatData );
 
-    socket.on('nuevoMensaje', async (mensaje)=>{
-        await mensajes.save(mensaje);
+  socket.on('nuevoMensaje', async (mensaje)=>{
+    await mensajes.save(mensaje);
 		let chat = await mensajes.getAll();
-        io.sockets.emit("arr-chat", chat);
-    });
+    io.sockets.emit("arr-chat", chat);
+  });
 
-    socket.on('nuevoProducto', async (data) => {
-        await productos.save(data);
-        let agregado = await productos.getAll();
-        io.sockets.emit("productos", agregado )
-    });
+  socket.on('nuevoProducto', async (data) => {
+    await productos.save(data);
+    let agregado = await productos.getAll();
+    io.sockets.emit("productos", agregado )
+  });
 });
