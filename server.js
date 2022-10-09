@@ -1,241 +1,37 @@
-<<<<<<< HEAD
-//------------------------------ 
-// SERVIDOR EXPRESS
-//------------------------------ 
-const express = require('express');
+import express from "express";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import routerApi from "./routes/productosApi.js";
+
+// SERVIDOR EXPRESS //
 const app = express();
-const PORT = process.env.PORT || 8080;
-const server = app.listen(PORT, () => {
-    console.log(`Hola, soy tu servidor escuchando en el puerto [ ${server.address().port} ]`)
-});
-server.on("error", error => console.log(`Error en servidor: ${error}`));
+const PORT = 8080;
+const httpServer = createServer(app);
+const io = new Server(httpServer, {});
 
+httpServer.listen(process.env.PORT || PORT, () =>
+  console.log("Servidor Funcionando en Puerto: " + PORT)
+);
+httpServer.on("error", (error) => console.log(`Error en servidor ${error}`));
+
+// CONFIGURACION APP
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+const __filename = fileURLToPath(import.meta.url);
+export const __dirname = dirname(__filename);
+app.use(express.static(__dirname + "/public"));
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
-app.use('/public', express.static(__dirname + '/public'));
+app.use(express.urlencoded({ extended: true }));
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
-//------------------------------ 
-// ROUTER
-//------------------------------ 
-const {Router} = express;
-const routerProductos = Router();
-const routerCarrito = Router();
-app.use('/api/productos', routerProductos);
-app.use('/api/carrito', routerCarrito);
+app.use("/api/products-test", routerApi);
 
-//------------------------------ 
-// MANEJO DE ERROR EN SERVIDOR
-//------------------------------ 
-app.use(function(err,req,res,next) {
-    console.log(err.stack);
-    res.status(500).send('Somenthing broke');
-})
-
-//------------------------------ 
-// CREACION DE CLASES
-//------------------------------ 
-
-const Contenedor = require("./src/classContenedor");
-const productos = new Contenedor('productos');
-const carritos = new Contenedor('carrito');
-
-//------------------------------ 
-//    TIMESTAMP
-=======
-
-//------------------------------ 
-//    PETICIONES 
->>>>>>> databases
-//------------------------------ 
-
-const fecha = Date.now();
-const timeStamp = {"timestamp": new Date(fecha).toUTCString()};
-
-//------------------------------ 
-//    VARIABLE ADMIN
-//------------------------------
-let admin = true;
-// let admin = false;
-
-//------------------------------ 
-//    PETICIONES PRODUCTOS
-//------------------------------
-
-// LISTA PRODUCTOS (GET ALL)
-routerProductos.get('/', async (req, res) => {
-    let productosAll = await productos.getAll();
-        if (!productosAll) {
-<<<<<<< HEAD
-            res.json({error: "Hubo un error en el archivo."});
-=======
-            res.render('error', {errorMessage: "Hubo un error con el archivo"});
->>>>>>> databases
-        } else {
-            res.json({titulo: "Listado de productos", productos: productosAll})
-        }
-    }
-);
-
-// PRODUCTO POR ID (GET BY ID) //
-routerProductos.get('/:id', async (req, res) => {
-    const {id} = req.params;
-<<<<<<< HEAD
-    const encontrado = await productos.getById(id);
-    
-    if (!encontrado) {
-            res.json({mensajeError: "Producto no encontrado"});
-        } else {
-            res.json({titulo: `Detalle del producto ${encontrado.nombre} con id ${encontrado.id}`, producto: encontrado});
-        }
-    }
-);
-
-// AGREAGR UN PRODUCTO (SAVE) //
-routerProductos.post('/', 
-    (req, res, next) => {
-        if(!admin) {
-            res.json({error: -1, descripcion: `ruta ${req.baseUrl} método ${req.method} no autorizado`});
-        } else {
-            next();
-        }
-    },
-    async (req,res) => {
-        const {body} = req;
-        const agregado = {...body , ...timeStamp};
-        await productos.save(agregado);
-        res.json({success: "ok", producto: agregado});
-    }
-)
-=======
-    const data = await productos.getById(id);
-    console.log(data)
-    // const encontrado = 
-    // console.log(data)
-    // if (!encontrado) {
-    //     res.render('error', {errorMessage: "Producto no encontrado"});
-    //     } else {
-    //         res.render('unProducto', {producto: encontrado, titulo: `Detalle de ${encontrado.nombre}`})
-    //     }
-    }
-);
-
->>>>>>> databases
-
-// ACTUALIZAR UN PRODUCTO (PUT) //
-routerProductos.put('/:id', 
-    (req, res, next) => {
-        if(!admin) {
-            res.json({error: -1, descripcion: `ruta ${req.baseUrl} método ${req.method} no autorizado`});
-        } else {
-            next();
-        }
-    },
-    async (req,res) => {
-        const {id} = req.params
-        const {body} = req;
-        let productoActualizar = await productos.getById(id);
-
-        if (productoActualizar) {
-            productoActualizar = {...productoActualizar, ...body, ...timeStamp};
-            await productos.update(id, productoActualizar);
-            res.json({success: "ok", producto: productoActualizar});
-        } else {
-            res.json({error: "Producto no encontrado"});
-        }
-    }
-);
-
-<<<<<<< HEAD
-// ELIMINAR UN PRODUCTO (DELETE) //
-routerProductos.delete('/:id', 
-    (req, res, next) => {
-        if(!admin) {
-            res.json({error: -1, descripcion: `ruta ${req.baseUrl} método ${req.method} no autorizado`});
-        } else {
-            next();
-        }
-    },
-    async (req,res) => {
-        const {id} = req.params;
-        const encontrado = await productos.deleteById(id);
-        if (encontrado) {
-            res.json({success: "ok", mensaje: "Producto eliminado"});
-        } else {
-            res.json({error: "Producto no encontrado"});
-        }
-    }
-);
-
-//------------------------------ 
-//    PETICIONES CARRITO
-//------------------------------
-
-// CREAR CARRITO VACIO //
-routerCarrito.post("/", async (req,res) => {
-    let productos = {"productos": []};
-    let nuevoCarrito = {...productos, ...timeStamp};
-    await carritos.save(nuevoCarrito);
-    res.json({success: "ok", mensaje: `Carrito creado con id: ${nuevoCarrito.id}`});
-    }
-);
-
-// MOSTRAR PRODUCTOS EN CARRITO//
-routerCarrito.get("/:id/productos", async (req, res) => {
-    const {id} = req.params;
-    let datosCarrito = await carritos.getById(id);
-
-    if (datosCarrito) {
-        let productosCarrito = datosCarrito.productos;
-        res.json({titulo: "Productos en carrito", productos: productosCarrito})
-    } else {
-        res.json({mensaje: `No se encontro el carrito con id ${id}`});
-    }
+app.use("/", (req, res) => {
+  res.render("pages/home");
 });
 
-// AGREGAR PRODUCTO (POR SU ID) AL CARRITO//
-routerCarrito.post("/:id/productos", async (req, res) => {
-    const {id} = req.params;
-    const {body} = req;
-    let productoAgregar = await productos.getById(body.id);
-    let carritoActualizar = await carritos.getById(id);
+// SOCKETS
+import { socketModel } from "./src/utils/socket.js";
+socketModel(io);
 
-    if (productoAgregar) {
-        carritoActualizar.productos.push(productoAgregar);
-        carritos.update(id, carritoActualizar);
-        res.json({success: "ok", mensaje: `Se agrego el producto ${productoAgregar.nombre}`});
-    } else {
-        res.json({error: `Producto con id ${body.id} no encontrado`});
-    }
-});
-
-// ELIMINAR CARRITO POR SU ID //
-routerCarrito.delete("/:id", async (req, res) => {
-    const {id} = req.params;
-    let carritoBorrar = await carritos.getById(id);
-
-    if (carritoBorrar) {
-        carritos.deleteById(id);
-        res.json({success: "ok", mensaje: "Carrito eliminado correctamente"});
-    } else {
-        res.json({mensaje: `No se encontro el carrito con id ${id}`});      
-    }
-});
-
-// ELIMINAR PRODUCTO (POR SU ID) DEL CARRITO //
-routerCarrito.delete("/:id/productos/:id_prod", async (req, res) => {
-    const {id, id_prod} = req.params;
-    let carritoActualizar = await carritos.getById(id);
-    let productoEliminar = await productos.getById(id_prod);
-    let indexEliminarProd = carritoActualizar.productos.findIndex((prod) => prod.id == productoEliminar.id);
-    console.log(indexEliminarProd)
-
-    if (indexEliminarProd != -1) {
-        carritoActualizar.productos.splice(indexEliminarProd, 1);
-        carritos.update(id, carritoActualizar);
-        res.json({success: "ok", mensaje: `Producto ${productoEliminar.nombre} eliminado correctamente`});
-    } else {
-        res.json({error: `No se encontro el producto con id ${id_prod}`});          
-    }
-});
-=======
->>>>>>> databases
