@@ -1,6 +1,6 @@
-const ContenedorMemoria = require('../daos/apiDaos');
-const { crearProductosApi } = require('../utils/crearProductosApi');
-const { generarId } = require('../utils/generarId')
+const ContenedorMemoria = require('../daos/apiDaos.js');
+const { crearProductosApi } = require('../utils/crearProductosApi.js');
+const { generarId } = require('../utils/generadorId.js')
 
 class ApiProductosMock extends ContenedorMemoria {
   constructor() { 
@@ -9,7 +9,7 @@ class ApiProductosMock extends ContenedorMemoria {
   popular(cant = 5) {
 		const productos = []
     for (let i = 0; i < cant; i++) {
-      const nuevoProducto = crearProductosApi(generarId())
+      const nuevoProducto = crearProductosApi(generarId());
       const guardado = this.guardar(nuevoProducto)
       productos.push(guardado)
     }

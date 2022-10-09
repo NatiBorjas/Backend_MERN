@@ -1,7 +1,7 @@
 /* SERVIDOR EXPRESS */
 const express = require("express");
 const {engine} = require("express-handlebars");
-const routerApi = require('./router/apiProducts');
+const routerApi = require('./router/apiProducts.js');
 // const routerProductos = require('./router/productos');
 
 const app = express();

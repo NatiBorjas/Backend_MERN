@@ -1,5 +1,5 @@
 const {crearProductosApi} = require('../utils/crearProductosApi');
-const { generarId } = require('../utils/generarId');
+const { generarId } = require('../utils/generadorId');
 
 class ContenedorMemoria {
   constructor() {

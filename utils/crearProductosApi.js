@@ -13,4 +13,4 @@ function crearProductosApi (n=5) {
 	}
 }
 
-module.exports = crearProductosApi
+module.exports = {crearProductosApi}
