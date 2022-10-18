@@ -1,16 +1,21 @@
 import mensajesDaos from "../../daos/mensajesDaos.js";
-const mensajesContoller = new mensajesDaos();
 import { mensajesNormalize } from "../normalizr/mensajesNormalize.js";
 
-export async function chatSocket(socket, io) {
-  let mensajes = await mensajesContoller.getAll();
-  io.sockets.emit("mensajes", mensajesNormalize(mensajes));
+const mensajesContoller = new mensajesDaos();
 
-  socket.on("nuevo-mensaje", async (msje) => {
-    let mensaje = JSON.parse(msje);
-    await mensajesContoller.save(mensaje);
-    let chat = await mensajesContoller.getAll({ sort: true });
-
-    io.sockets.emit("mensajes", mensajesNormalize(chat));
+export const chatSocket = (io) => {
+  io.on("connection", async (socket) => {
+    console.log("Nuevo usuarix Conectado: " + socket.id);
+    io.sockets.emit(
+      "mensajes",
+      mensajesNormalize(await mensajesContoller.getAll())
+    );
+    socket.on("nuevo-mensaje", async (msje) => {
+      await mensajesContoller.save(JSON.parse(msje));
+      io.sockets.emit(
+        "mensajes",
+        mensajesNormalize(await mensajesContoller.getAll({ sort: true }))
+      );
+    });
   });
-}
+};
