@@ -1,5 +1,5 @@
 import homeRouter from "./homeRouter.js";
 import loginRouter from "./loginRouter.js";
-import productRouter from "./productosApi.js";
+import productosRouter from "./productosRouter.js";
 
-export { homeRouter, productRouter, loginRouter };
+export { homeRouter, productosRouter, loginRouter };

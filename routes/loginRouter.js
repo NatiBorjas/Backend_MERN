@@ -1,9 +1,9 @@
 import { Router } from "express";
 const loginRouter = Router();
-import { loginController } from "../daos/loginDaos.js";
+import { loginDaos } from "../daos/loginDaos.js";
 
-loginRouter.get("/", loginController.get);
+loginRouter.get("/", loginDaos.get);
 
-loginRouter.post("/", loginController.postLogin);
+loginRouter.post("/", loginDaos.postLogin);
 
 export default loginRouter;

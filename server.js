@@ -3,7 +3,7 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import session from "express-session";
 import {chatSocket} from "./src/utils/socketChat.js";
-import {homeRouter, productRouter, loginRouter } from "./routes/index.js";
+import {homeRouter, productosRouter, loginRouter } from "./routes/index.js";
 import MongoStore from "connect-mongo";
 
 // SERVIDOR EXPRESS //
@@ -45,7 +45,7 @@ app.use(
     saveUninitialized: false,
   })
 );
-app.use("/api/products-test", productRouter);
+app.use("/api/products-test", productosRouter);
 app.use("/login", loginRouter);
 app.use("/home", homeRouter);
 

@@ -1,4 +1,4 @@
-export const loginController = {
+export const loginDaos = {
   auth: (req, res, next) => {
     if (req.session.username != undefined) {
       return next();
@@ -29,16 +29,3 @@ export const loginController = {
     }
   },
 };
-
-// if (req.session?.user === "fran" && req.session?.admin) {
-//   return next();
-// }
-
-// const { username, password } = req.body;
-// if (username !== "fran" || password !== "123") {
-//   return res.render("pages/errorLogin");
-// }
-// req.session.admin = true;
-// var time = 600000;
-// // req.session.cookie.expires = new Date(Date.now() + time);
-// req.session.cookie.maxAge = new Date(Date.now() + time);
