@@ -1,0 +1,15 @@
+//Levantar Redis
+//Levantar Mongo
+mongod --dbpath C:\Users\natal\Documents\Coder\backend-32080\ecommerce
+
+// PAGINAS
+REGISTRO
+http://localhost:8080/registro
+
+LOGIN
+http://localhost:8080/login
+
+LOGOUT
+http://localhost:8080/logout
+
+HOME

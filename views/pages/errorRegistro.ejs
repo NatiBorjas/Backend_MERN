@@ -18,21 +18,24 @@
 	<header>
 		<%- include('../partials/navbar')%>
 	</header>
+
 	<div class="flex-center">
-		<span>Error de acceso. Verifique usuario y contraseña</span>
+		<span>Error de registro</span>
 		<span>
-			Redirigiendo en <span id="time">5</span> segundos
+			Redirigiendo en <span id="time">10</span> segundos
 		</span>
 		<div role="status">
 			<span>Loading...</span>
 		</div>
 	</div>
 	<div>
-		<a href="/login">
-			<button class="btn-enviar">Volver a Login</button>
+		<a href="/registro">
+			<button class="btn-enviar">Intentar registrarse</button>
 		</a>
 	</div>
+
 	<div ><%- include('../partials/footer')%></div>
+
 	<script>
 		function redirect() {
 			setInterval(() => {
