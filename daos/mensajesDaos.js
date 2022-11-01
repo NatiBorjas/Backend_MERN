@@ -5,7 +5,7 @@ class mensajesDaos {
   constructor() {
     try {
       mongoose.connect(
-        "mongodb://localhost:27017/ecommerce",
+        "mongodb+srv://admin:admin123@ecommerce.nflhe41.mongodb.net/?retryWrites=true&w=majority",
         { useNewUrlParser: true }
       )
     } catch (e) {

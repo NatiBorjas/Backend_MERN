@@ -2,7 +2,7 @@ export const registroDaos = {
   get: (req, res) => {
     try {
       if (req.isAuthenticated()) {
-        res.render("pages/home");
+        res.redirect("/home");
       } else {
         res.render("pages/registro");
       }
@@ -16,7 +16,8 @@ export const registroDaos = {
     try {
       const { username } = req.user;
       req.session.username = username;
-      res.redirect("pages/home");
+			console.log(username)
+      res.redirect("/home");
     } catch (error) {
       return res.status(500).send({ status: "Error de registro", body: error });
     }

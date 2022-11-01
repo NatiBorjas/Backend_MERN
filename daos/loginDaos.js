@@ -22,7 +22,7 @@ export const loginDaos = {
   get: (req, res) => {
     try {
       if (req.isAuthenticated()) {
-        res.render("pages/home");
+        res.redirect("/home");
       } else {
         res.render("pages/login");
       }
@@ -37,7 +37,7 @@ export const loginDaos = {
     try {
       const { username } = req.body;
       req.session.username = username;
-      res.render("pages/home");
+      res.redirect("/home");
     } catch (error) {
       return res.status(500).send({ status: "Log In error", body: "error" });
     }

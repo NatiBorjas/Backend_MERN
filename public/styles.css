@@ -33,46 +33,45 @@ table {
     border-spacing: 0;
     border-radius: 25px;
 }
-    table th {
-        border: 1px solid #00FFFF;
-        padding: 20px;
-        margin: 50px;
-        /* height: 50px; */
-    }
-    table tr, table td {
-        padding: 20px;
-        margin: 40px;
-    }
-    table tr {
-        font-size: 20px;
-        padding: 15px;
-        margin: 10px;
-        /* border: 25px; */
-        background-color: black;
-        align-items: center;
-        
-    }
-    table td {
-        padding: 15px;
-        align-items: center;
-        align-content: center;
-        margin: 5px;
-    }
+  table th {
+    border: 1px solid #00FFFF;
+    padding: 20px;
+    margin: 50px;
+    /* height: 50px; */
+  }
+  table tr, table td {
+    padding: 20px;
+    margin: 40px;
+  }
+  table tr {
+    font-size: 20px;
+    padding: 15px;
+    margin: 10px;
+    /* border: 25px; */
+    background-color: black;
+    align-items: center;
+  }
+  table td {
+    padding: 15px;
+    align-items: center;
+    align-content: center;
+    margin: 5px;
+  }
 .product-img {
   width: 20%;
 }
 
 footer{
-    font-size: 12px;
-    text-align: center;
-    background-color: #0a0a23;
-    margin-bottom: 0;
-    padding: 20px;
+  font-size: 12px;
+  text-align: center;
+  background-color: #0a0a23;
+  margin-bottom: 0;
+  padding: 20px;
 }
 
 a {
-    text-decoration: none;
-    color: #00FFFF;
+  text-decoration: none;
+  color: #00FFFF;
 }:visited {
     color: #00FFFF;
 }:hover {
@@ -106,9 +105,9 @@ input{
 .form-container {
 	display: flex;
 	flex-direction: column;
-    align-items: center;
-    width: 100%;
-    margin-top: 45px;
+  align-items: center;
+  width: 100%;
+  margin-top: 45px;
 }
 
 .btn-enviar {

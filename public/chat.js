@@ -64,4 +64,4 @@ socket.on("mensajes", (data) => {
   document.getElementById("div-chats").innerHTML = add;
 });
 
-document.getElementById("logout").classList.remove("d-none");
+// document.getElementById("logout").classList.remove("d-none");
