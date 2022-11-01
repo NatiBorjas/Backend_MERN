@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 import Messages from "../models/mensajeSchema.js";
+import { MONGOPSW } from "../config.js";
 
 class mensajesDaos {
   constructor() {
     try {
       mongoose.connect(
-        "mongodb+srv://admin:admin123@ecommerce.nflhe41.mongodb.net/?retryWrites=true&w=majority",
+        `mongodb+srv://admin:${MONGOPSW}@ecommerce.nflhe41.mongodb.net/?retryWrites=true&w=majority`,
         { useNewUrlParser: true }
       )
     } catch (e) {

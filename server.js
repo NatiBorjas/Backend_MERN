@@ -6,6 +6,8 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import {chatSocket} from "./src/utils/socketChat.js";
 import {homeRouter, productosRouter, loginRouter, logoutRouter,signupRouter  } from "./routes/index.js";
+// VARIABLES DE ENTORNO//
+import { MONGOPSW } from "./config.js";
 
 // SERVIDOR EXPRESS Y SOCKETS//
 const app = express();
@@ -32,7 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // CONEXION BD MONGO //
 mongoose
-	.connect("mongodb+srv://admin:admin123@ecommerce.nflhe41.mongodb.net/?retryWrites=true&w=majority",
+	.connect(`mongodb+srv://admin:${MONGOPSW}@ecommerce.nflhe41.mongodb.net/?retryWrites=true&w=majority`,
 		{ useNewUrlParser: true })
 	.then(console.log("Conectado a la BD Mongo"));
 
