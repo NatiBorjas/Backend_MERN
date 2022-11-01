@@ -7,7 +7,7 @@ homeRouter.get("/", (req, res, next) => {
       name: req.session.username,
     });
   } else {
-    res.redirect("/login/faillogin");
+    res.redirect("/login");
   }
 });
 

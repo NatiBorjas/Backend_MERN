@@ -72,9 +72,9 @@ footer{
 a {
   text-decoration: none;
   color: #00FFFF;
-}:visited {
+	}:visited {
     color: #00FFFF;
-}:hover {
+	}:hover {
 	color: #0a0a23;
 }
 

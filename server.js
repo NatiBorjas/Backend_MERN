@@ -144,15 +144,8 @@ app.use("/registro", signupRouter);
 app.use("/logout", logoutRouter);
 app.use("/home", homeRouter);
 
-// app.get("/logout", (req, res) => {
-//   let username = req.session.username;
-//   req.session.destroy((err) => {
-//     if (err) {
-//       return res.json({ status: "Logout ERROR", body: err });
-//     }
-//     res.render("pages/logout", { name: username });
-//   });
-// });
-
+app.all("*", (req, res) => {
+  res.status(404).send("Ruta no encontrada");
+});
 
 
