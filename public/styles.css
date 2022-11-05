@@ -20,34 +20,22 @@ body {
     top: 0;
     width: 100%;
 }
-/* table {
-  table-layout: fixed;
-  text-align: center;
-  word-wrap: break-word;
-} */
+
 table {
-    border: 1px solid #00FFFF;
-    border-radius: 50px;
-    border-collapse: separate;
-    font-size: 9px;
-    border-spacing: 0;
-    border-radius: 25px;
+	table-layout: fixed;
+  word-wrap: break-word;
+  border: 1px solid #00FFFF;
+  border-collapse: separate;
+  border-spacing: 0;
 }
   table th {
     border: 1px solid #00FFFF;
     padding: 20px;
     margin: 50px;
-    /* height: 50px; */
-  }
-  table tr, table td {
-    padding: 20px;
-    margin: 40px;
   }
   table tr {
-    font-size: 20px;
-    padding: 15px;
-    margin: 10px;
-    /* border: 25px; */
+    padding: 20px;
+    margin: 40px;
     background-color: black;
     align-items: center;
   }
@@ -133,4 +121,10 @@ input{
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.info-container {
+	padding: 25px;
+	margin: 25px;
+	
 }

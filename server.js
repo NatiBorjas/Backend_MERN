@@ -5,13 +5,21 @@ import { dirname } from "path";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import {chatSocket} from "./src/utils/socketChat.js";
-import {homeRouter, productosRouter, loginRouter, logoutRouter,signupRouter  } from "./routes/index.js";
+import {
+	homeRouter, 
+	productosRouter, 
+	loginRouter, 
+	logoutRouter,
+	signupRouter,
+	infoRouter,
+	randomsRouter  
+} from "./routes/index.js";
+
 // VARIABLES DE ENTORNO//
-import { MONGOPSW } from "./config.js";
+import { MONGOPSW, PORT } from "./config.js";
 
 // SERVIDOR EXPRESS Y SOCKETS//
 const app = express();
-const PORT = process.env.PORT || 8080;
 const httpServer = createServer(app);
 const io = new Server(httpServer, {});
 chatSocket(io);
@@ -100,7 +108,7 @@ const RedisStore = connectRedis(session);
 
 app.use(
   session({
-    store: new RedisStore({ host: "localhost", port: 8080, client, ttl: 300 }),
+    store: new RedisStore({ host: "localhost", port: PORT, client, ttl: 300 }),
     secret: "topsecret",
     cookie: {
       httpOnly: false,
@@ -145,6 +153,8 @@ app.use("/login", loginRouter);
 app.use("/registro", signupRouter);
 app.use("/logout", logoutRouter);
 app.use("/home", homeRouter);
+app.use("/info", infoRouter);
+app.use("/api/randoms", randomsRouter);
 
 app.all("*", (req, res) => {
   res.status(404).send("Ruta no encontrada");
