@@ -1,7 +1,7 @@
-import { Router } from "express";
+const { Router } = require("express");
 const signupRouter = Router();
-import { registroDaos } from "../daos/registroDaos.js";
-import passport from "passport";
+const { registroDaos } = require("../daos/registroDaos.js");
+const passport = require("passport");
 
 signupRouter.get("/", registroDaos.get);
 signupRouter.get("/errorregistro", registroDaos.errorSignup);
@@ -9,4 +9,4 @@ signupRouter.post("/",passport.authenticate("signup", { failureRedirect: "/regis
   registroDaos.postsignup
 );
 
-export default signupRouter;
+module.exports = signupRouter;

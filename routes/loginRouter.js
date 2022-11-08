@@ -1,7 +1,7 @@
-import { Router } from "express";
+const { Router } = require("express");
 const loginRouter = Router();
-import { loginDaos } from "../daos/loginDaos.js";
-import passport from "passport";
+const { loginDaos } = require("../daos/loginDaos.js");
+const passport = require("passport");
 
 loginRouter.get("/", loginDaos.get);
 loginRouter.get("/errorLogin", loginDaos.errorLogin);
@@ -9,4 +9,4 @@ loginRouter.post("/",passport.authenticate("login", { failureRedirect: "/login/e
   loginDaos.postLogin
 );
 
-export default loginRouter;
+module.exports = loginRouter;

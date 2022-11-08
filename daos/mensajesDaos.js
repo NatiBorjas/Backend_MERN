@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
-import Messages from "../models/mensajeSchema.js";
-import { MONGOPSW } from "../config.js";
+// import mongoose from "mongoose";
+const mongoose = require("mongoose");
+const Messages = require("../models/mensajeSchema.js") ;
+const { MONGOPSW } = require("../config.js");
 
 class mensajesDaos {
   constructor() {
@@ -40,4 +41,4 @@ class mensajesDaos {
   }
 }
 
-export default mensajesDaos;
+module.exports = mensajesDaos

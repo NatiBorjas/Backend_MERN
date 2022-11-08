@@ -1,7 +1,9 @@
-import { faker } from "@faker-js/faker";
+const { faker } = require("@faker-js/faker");
 
-export default async function crearId() {
+async function crearId() {
   const id = faker.database.mongodbObjectId();
 
   return id;
 }
+
+module.exports = crearId;

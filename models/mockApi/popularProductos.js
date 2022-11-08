@@ -1,6 +1,6 @@
-import { faker } from "@faker-js/faker";
+const { faker } = require("@faker-js/faker");
 
-export default function crearProductosApi(n = 5) {
+function crearProductosApi(n = 5) {
   let productos = [];
   for (let i = 0; i < n; i++) {
     productos.push({
@@ -12,3 +12,5 @@ export default function crearProductosApi(n = 5) {
   }
   return productos;
 }
+
+module.exports = crearProductosApi;

@@ -1,4 +1,4 @@
-import { Router } from "express";
+const { Router } = require("express");
 const logoutRouter = Router();
 
 logoutRouter.get("/", (req, res) => {
@@ -15,4 +15,4 @@ logoutRouter.get("/", (req, res) => {
   }
 });
 
-export default logoutRouter;
+module.exports = logoutRouter;

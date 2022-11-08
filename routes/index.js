@@ -1,15 +1,12 @@
-import homeRouter from "./homeRouter.js";
-import loginRouter from "./loginRouter.js";
-import logoutRouter from "./logoutRouter.js";
-import signupRouter from "./signupRouter.js";
-import productosRouter from "./productosRouter.js";
-import infoRouter from "./infoRouter.js";
-import randomsRouter from "./randomRouter.js";
+const homeRouter = require("./homeRouter.js");
+const loginRouter = require("./loginRouter.js");
+const logoutRouter = require("./logoutRouter.js");
+const signupRouter = require("./signupRouter.js");
+const productosRouter = require("./productosRouter.js");
+const infoRouter = require("./infoRouter.js");
+const randomsRouter = require("./randomRouter.js");
 
-
-
-
-export { 
+module.exports = { 
 	homeRouter, 
 	productosRouter, 
 	loginRouter, 

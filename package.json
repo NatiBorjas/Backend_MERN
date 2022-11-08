@@ -3,7 +3,6 @@
 	"description": "Proyecto de Curso Backend CoderHouse",
 	"version": "1.0.0",
 	"main": "index.js",
-	"type": "module",
 	"scripts": {
 		"start": "nodemon server.js",
 		"test": "echo \"Error: no test specified\" && exit 1"

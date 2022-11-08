@@ -1,6 +1,6 @@
-import { crearProductosApi } from "../models/mockApi/index.js";
+const { crearProductosApi } = require("../models/mockApi/index.js");
 
-export const productosDaos = {
+const productosDaos = {
   getData: async (req, res) => {
     try {
       let productos = await crearProductosApi(5);
@@ -20,3 +20,5 @@ export const productosDaos = {
     }
   },
 };
+
+module.exports = {productosDaos}

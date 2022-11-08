@@ -1,4 +1,4 @@
-import parseArgs from "minimist";
+const parseArgs = require("minimist");
 
 const infoRouter = (req, res) => {
   try {
@@ -18,4 +18,4 @@ const infoRouter = (req, res) => {
   }
 };
 
-export default infoRouter
+module.exports = infoRouter

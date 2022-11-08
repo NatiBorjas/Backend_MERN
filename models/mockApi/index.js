@@ -1,4 +1,4 @@
-import crearProductosApi from "./popularProductos.js";
-import crearId from "./crearId.js";
+const crearProductosApi = require("./popularProductos.js");
+const crearId = require("./crearId.js");
 
-export { crearProductosApi, crearId };
+module.exports = { crearProductosApi, crearId };

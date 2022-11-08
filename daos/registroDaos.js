@@ -1,4 +1,4 @@
-export const registroDaos = {
+const registroDaos = {
   get: (req, res) => {
     try {
       if (req.isAuthenticated()) {
@@ -31,3 +31,5 @@ export const registroDaos = {
     }
   },
 };
+
+module.exports = {registroDaos}

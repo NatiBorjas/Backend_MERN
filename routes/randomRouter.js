@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { apiRandomDaos } from "../daos/randomDaos.js";
+const { Router } = require("express");
+const { apiRandomDaos } = require("../daos/randomDaos.js");
 const randomsRouter = Router();
 
-randomsRouter.get("/", apiRandomDaos.get);
-randomsRouter.post("/", apiRandomDaos.post);
+randomsRouter.get("/api/randoms", apiRandomDaos.get);
+randomsRouter.post("/api/randoms", apiRandomDaos.post);
 
-export default randomsRouter;
+module.exports =  randomsRouter;

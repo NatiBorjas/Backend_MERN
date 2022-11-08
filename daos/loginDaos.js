@@ -1,23 +1,4 @@
-export const loginDaos = {
-  // auth: (req, res, next) => {
-  //   if (req.session.username != undefined) {
-  //     return next();
-  //   }
-  //   return res.status(401).render("pages/errorLogin");
-  // },
-  // get: (req, res) => {
-  //   try {
-  //     if (req.is) {
-  //       res.render("pages/home", { name: req.session.username });
-  //     } else {
-  //       res.render("pages/login");
-  //     }
-  //   } catch (error) {
-  //     return res
-  //       .status(500)
-  //       .send({ status: "Get page Log In error", body: error });
-  //   }
-  // },
+const loginDaos = {
 
   get: (req, res) => {
     try {
@@ -51,3 +32,5 @@ export const loginDaos = {
     }
   },
 };
+
+module.exports = {loginDaos}

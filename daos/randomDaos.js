@@ -1,9 +1,11 @@
-import { fork } from "child_process";
+const { fork } = require("child_process");
+const parseArgs = require("minimist");
 
-export const apiRandomDaos = {
+const apiRandomDaos = {
   get: (req, res) => {
     try {
-      res.status(200).render("pages/random");
+			const args = parseArgs(process.argv.slice(2));
+      res.status(200).render("pages/random", {port: args !== undefined ? args.PORT : "",});
     } catch (error) {
       res.status(500).send({ error });
     }
@@ -22,3 +24,5 @@ export const apiRandomDaos = {
     }
   },
 };
+
+module.exports = {apiRandomDaos}

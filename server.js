@@ -1,11 +1,12 @@
-import express from "express";
-import session from "express-session";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-import { createServer } from "http";
-import { Server } from "socket.io";
-import {chatSocket} from "./src/utils/socketChat.js";
-import {
+const express = require("express");
+const session = require("express-session");
+const { fileURLToPath } = require("url");
+const { dirname } = require("path");
+const http = require("http");
+const mongoose = require("mongoose");
+const { Server } = require("socket.io");
+const {chatSocket} = require("./src/utils/socketChat.js");
+const {
 	homeRouter, 
 	productosRouter, 
 	loginRouter, 
@@ -13,38 +14,34 @@ import {
 	signupRouter,
 	infoRouter,
 	randomsRouter  
-} from "./routes/index.js";
+} = require("./routes/index.js");
 
 // VARIABLES DE ENTORNO//
-import { MONGOPSW, PORT } from "./config.js";
-
-// SERVIDOR EXPRESS Y SOCKETS//
-const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer, {});
-chatSocket(io);
+const { MONGOPSW, PORT, MODO } = require("./config.js");
 
 // PASSPORT //
-import passport from "passport";
-import {Strategy as LocalStrategy} from "passport-local";
-import redis from "redis";
-import connectRedis from "connect-redis";
-import mongoose from "mongoose";
-import Usuarios from "./models/usuariosSchema.js";
-import { isValidPassword, createHash } from "./src/utils/passwordsFunctions.js";
+const passport = require("passport");
+const { Strategy: LocalStrategy } = require("passport-local");
+const redis = require("redis");
+const connectRedis = require("connect-redis");
+
+const Usuarios = require("./models/usuariosSchema.js");
+const { isValidPassword, createHash } = require("./src/utils/passwordsFunctions.js");
 
 // CONFIGURACION APP
-const __filename = fileURLToPath(import.meta.url);
-export const __dirname = dirname(__filename);
+const app = express();
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// const __filename = fileURLToPath(import.meta.url);
+// export const __dirname = dirname(__filename);
 
 // CONEXION BD MONGO //
 mongoose
 	.connect(`mongodb+srv://admin:${MONGOPSW}@ecommerce.nflhe41.mongodb.net/?retryWrites=true&w=majority`,
 		{ useNewUrlParser: true })
-	.then(console.log("Conectado a la BD Mongo"));
+	.then(console.log("Conectado a la BD Mongo"))
+	.catch((err) => console.log(err));
 
 // EJS PLANTILLA //
 app.set("view engine", "ejs");
@@ -108,7 +105,7 @@ const RedisStore = connectRedis(session);
 
 app.use(
   session({
-    store: new RedisStore({ host: "localhost", port: PORT, client, ttl: 300 }),
+    store: new RedisStore({ host: "localhost", port: 6379, client, ttl: 300 }),
     secret: "topsecret",
     cookie: {
       httpOnly: false,
@@ -138,12 +135,7 @@ app.use((req, res, next) => {
   next();
 });
 
-//INICIO SERVIDOR
-httpServer.listen(PORT, () => console.log("Servidor escuchando en Puerto: " + PORT));
-httpServer.on("error", (error) => console.log(`Error en servidor ${error}`));
-
 // RUTAS
-
 app.get("/", (req, res) => {
   res.redirect("/login");
 });
@@ -154,10 +146,58 @@ app.use("/registro", signupRouter);
 app.use("/logout", logoutRouter);
 app.use("/home", homeRouter);
 app.use("/info", infoRouter);
-app.use("/api/randoms", randomsRouter);
+app.use(randomsRouter);
 
 app.all("*", (req, res) => {
   res.status(404).send("Ruta no encontrada");
 });
 
+// CLUSTER
+const cluster = require("cluster");
+const os = require("os");
+const numCPUs = os.cpus().length;
 
+if (MODO === "CLUSTER") {
+  if (cluster.isPrimary) {
+    console.log("MODO CLUSTER");
+    console.log("Servidor Funcionando en Puerto: " + PORT);
+    console.log(`Master PID ${process.pid} `);
+    // fork workers.
+    console.log(numCPUs);
+    for (let i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
+    cluster.on("exit", (worker, code, signal) => {
+      cluster.fork();
+      console.log(`Worker PID ${worker.process.pid} finalizado`);
+    });
+  } else {
+    const httpServer = http.createServer(app);
+    httpServer.listen(PORT, () => {
+      console.log(`Worker PID ${process.pid} iniciado`);
+    });
+    const io = new Server(httpServer, {});
+    chatSocket(io);
+  }
+} else {
+  const httpServer = http.createServer(app);
+  const io = new Server(httpServer, {});
+  chatSocket(io);
+  
+  httpServer.listen(PORT, () => {
+    console.log("Servidor Funcionando en Puerto: " + PORT);
+    console.log("MODO FORK");
+  });
+  httpServer.on("error", (error) => console.log(`Error en servidor ${error}`));
+}
+
+//////////////PM2
+
+// const httpServer = http.createServer(app);
+// httpServer.listen(PORT, () => {
+//   console.log(PORT);
+//   console.log("Servidor Funcionando en Puerto: " + PORT);
+// });
+// httpServer.on("error", (error) => console.log(`Error en servidor ${error}`));
+// const io = new Server(httpServer, {});
+// socketController(io);
