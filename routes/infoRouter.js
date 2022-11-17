@@ -1,4 +1,5 @@
 const parseArgs = require("minimist");
+const os = require("os");
 
 const infoRouter = (req, res) => {
   try {
@@ -11,6 +12,7 @@ const infoRouter = (req, res) => {
       rutaEjecutable: process.execPath,
       sistemaOperativo: process.platform,
       memoria: JSON.stringify(process.memoryUsage().rss, null, 2),
+			processNum: os.cpus().length,
     };
     res.render("pages/info", info);
   } catch (error) {

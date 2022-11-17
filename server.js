@@ -162,7 +162,7 @@ if (MODO === "CLUSTER") {
     console.log("MODO CLUSTER");
     console.log("Servidor Funcionando en Puerto: " + PORT);
     console.log(`Master PID ${process.pid} `);
-    // fork workers.
+
     console.log(numCPUs);
     for (let i = 0; i < numCPUs; i++) {
       cluster.fork();
@@ -190,14 +190,3 @@ if (MODO === "CLUSTER") {
   });
   httpServer.on("error", (error) => console.log(`Error en servidor ${error}`));
 }
-
-//////////////PM2
-
-// const httpServer = http.createServer(app);
-// httpServer.listen(PORT, () => {
-//   console.log(PORT);
-//   console.log("Servidor Funcionando en Puerto: " + PORT);
-// });
-// httpServer.on("error", (error) => console.log(`Error en servidor ${error}`));
-// const io = new Server(httpServer, {});
-// socketController(io);
