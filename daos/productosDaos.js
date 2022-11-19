@@ -1,4 +1,5 @@
 const { crearProductosApi } = require("../models/mockApi/index.js");
+const { errorLogger } = require("../src/utils/logger");
 
 const productosDaos = {
   getData: async (req, res) => {
@@ -16,6 +17,9 @@ const productosDaos = {
         });
       }
     } catch (e) {
+			errorLogger.error({
+				error: error.message,
+			});
       res.status(500).send({ error });
     }
   },

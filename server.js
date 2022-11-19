@@ -1,11 +1,11 @@
 const express = require("express");
 const session = require("express-session");
-const { fileURLToPath } = require("url");
-const { dirname } = require("path");
 const http = require("http");
-const mongoose = require("mongoose");
 const { Server } = require("socket.io");
+const mongoose = require("mongoose");
 const {chatSocket} = require("./src/utils/socketChat.js");
+const { logger } = require("./src/utils/logger");
+
 const {
 	homeRouter, 
 	productosRouter, 
@@ -29,7 +29,10 @@ const Usuarios = require("./models/usuariosSchema.js");
 const { isValidPassword, createHash } = require("./src/utils/passwordsFunctions.js");
 
 // CONFIGURACION APP
+const compression = require("compression");
 const app = express();
+app.use(compression());
+// app.use(express.static("public"));
 app.use(express.static(__dirname + "/public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -135,6 +138,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((req, res, next) => {
+  logger.info({ URL: req.originalUrl, method: req.method });
+  next();
+});
 // RUTAS
 app.get("/", (req, res) => {
   res.redirect("/login");
@@ -146,9 +153,14 @@ app.use("/registro", signupRouter);
 app.use("/logout", logoutRouter);
 app.use("/home", homeRouter);
 app.use("/info", infoRouter);
+// app.use(
+//   infoRouter
+//   // infoRouter({ memoryUsageBeforeCompression: memoryUsageBeforeCompression })
+// );
 app.use(randomsRouter);
 
 app.all("*", (req, res) => {
+	logger.warn({ URL: req.originalUrl, method: req.method });
   res.status(404).send("Ruta no encontrada");
 });
 

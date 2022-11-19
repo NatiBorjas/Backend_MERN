@@ -1,3 +1,5 @@
+const { errorLogger } = require("../src/utils/logger");
+
 const loginDaos = {
 
   get: (req, res) => {
@@ -5,12 +7,16 @@ const loginDaos = {
       if (req.isAuthenticated()) {
         res.redirect("/home");
       } else {
-        res.render("pages/login");
+        res.status(200).render("pages/login");
       }
     } catch (error) {
+      errorLogger.error({
+        URL: req.originalUrl,
+        method: req.method,
+        error: error.message,
+      });
       return res
-        .status(500)
-        .send({ status: "Get page Log In error", body: error });
+        .status(500).send({ status: "Log in Page Error (get)", body: error });
     }
   },
 
@@ -18,8 +24,13 @@ const loginDaos = {
     try {
       const { username } = req.body;
       req.session.username = username;
-      res.redirect("/home");
+      res.status(200).redirect("/home");
     } catch (error) {
+      errorLogger.error({
+        URL: req.originalUrl,
+        method: req.method,
+        error: error.message,
+      });
       return res.status(500).send({ status: "Log In error", body: "error" });
     }
   },

@@ -1,6 +1,6 @@
-// import mongoose from "mongoose";
 const mongoose = require("mongoose");
 const Messages = require("../models/mensajeSchema.js") ;
+const { errorLogger } = require("../src/utils/logger");
 const { MONGOPSW } = require("../config.js");
 
 class mensajesDaos {
@@ -11,7 +11,9 @@ class mensajesDaos {
         { useNewUrlParser: true }
       )
     } catch (e) {
-      console.log(e);
+      errorLogger.error({
+        error: error.message,
+      });
     }
   }
 
@@ -22,7 +24,9 @@ class mensajesDaos {
       await Messages.create(mensaje);
       return mensaje;
     } catch (error) {
-      throw Error(error.message);
+			errorLogger.error({
+        error: error.message,
+      });
     }
   }
 
@@ -36,7 +40,9 @@ class mensajesDaos {
       }
       return mensajes;
     } catch (error) {
-      throw Error(error.message);
+		errorLogger.error({
+        error: error.message,
+      });
     }
   }
 }
