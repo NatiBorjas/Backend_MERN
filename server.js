@@ -197,7 +197,7 @@ if (MODO === "CLUSTER") {
   chatSocket(io);
   
   httpServer.listen(PORT, () => {
-    console.log("Servidor Funcionando en Puerto: " + PORT);
+    console.log(`Servidor Funcionando en el puerto http://localhost:${PORT}`);
     console.log("MODO FORK");
   });
   httpServer.on("error", (error) => console.log(`Error en servidor ${error}`));
