@@ -14,7 +14,7 @@ const infoRouter = (req, res) => {
       memoria: JSON.stringify(process.memoryUsage().rss, null, 2),
 			processNum: os.cpus().length,
     };
-		console.log(info);
+		// console.log(info);
     res.render("pages/info", info);
   } catch (error) {
     res.render(error.message);

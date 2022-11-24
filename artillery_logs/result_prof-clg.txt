@@ -1,47 +1,61 @@
-Statistical profiling result from con_clg-v8.log, (4020 ticks, 0 unaccounted, 0 excluded).
+Statistical profiling result from clg-v8.log, (4496 ticks, 0 unaccounted, 0 excluded).
 
  [Shared libraries]:
    ticks  total  nonlib   name
-   3007   74.8%          C:\WINDOWS\SYSTEM32\ntdll.dll
-    974   24.2%          C:\Program Files\nodejs\node.exe
-      2    0.0%          C:\WINDOWS\System32\KERNELBASE.dll
+   3186   70.9%          C:\WINDOWS\SYSTEM32\ntdll.dll
+   1260   28.0%          C:\Program Files\nodejs\node.exe
+      2    0.0%          C:\WINDOWS\system32\mswsock.dll
+      1    0.0%          C:\WINDOWS\System32\WS2_32.dll
+      1    0.0%          C:\WINDOWS\System32\KERNELBASE.dll
+      1    0.0%          C:\WINDOWS\System32\KERNEL32.DLL
 
  [JavaScript]:
    ticks  total  nonlib   name
-     10    0.2%   27.0%  LazyCompile: *resolve node:path:158:10
-      2    0.0%    5.4%  RegExp: [ \t]*<%_
-      2    0.0%    5.4%  LazyCompile: *readPackageScope node:internal/modules/cjs/loader:321:26
-      2    0.0%    5.4%  LazyCompile: *handleErrorFromBinding node:internal/fs/utils:340:32
-      2    0.0%    5.4%  Function: ^exports.renderFile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:441:31
-      1    0.0%    2.7%  RegExp: ^\/login\/?(?=\/|$)
-      1    0.0%    2.7%  RegExp: [^\t\x20-\x7e\x80-\xff]
-      1    0.0%    2.7%  RegExp: ; *([!#$%&'*+.^_`|~0-9A-Za-z-]+) *= *("(?:[\u000b\u0020\u0021\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u000b\u0020-\u00ff])*"|[!#$%&'*+.^_`|~0-9A-Za-z-]+) *
-      1    0.0%    2.7%  LazyCompile: *scanLine C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:815:22
-      1    0.0%    2.7%  LazyCompile: *readSync node:fs:684:18
-      1    0.0%    2.7%  LazyCompile: *extname node:path:836:10
-      1    0.0%    2.7%  LazyCompile: *compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:571:21
-      1    0.0%    2.7%  Function: ^value node:internal/console/constructor:320:20
-      1    0.0%    2.7%  Function: ^session C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express-session\index.js:179:26
-      1    0.0%    2.7%  Function: ^resume_ node:internal/streams/readable:985:17
-      1    0.0%    2.7%  Function: ^render C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\application.js:548:29
-      1    0.0%    2.7%  Function: ^readableAddChunk node:internal/streams/readable:236:26
-      1    0.0%    2.7%  Function: ^normalizeEncoding node:internal/util:160:27
-      1    0.0%    2.7%  Function: ^include C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:696:30
-      1    0.0%    2.7%  Function: ^hasObserver node:internal/perf/observe:474:21
-      1    0.0%    2.7%  Function: ^entitytag C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\etag\index.js:39:20
-      1    0.0%    2.7%  Function: ^configure C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\safe-stable-stringify\index.js:213:20
-      1    0.0%    2.7%  Function: ^Readable.read node:internal/streams/readable:394:35
-      1    0.0%    2.7%  Function: ^<anonymous> node:_http_outgoing:564:45
+      7    0.2%   15.6%  LazyCompile: *resolve node:path:158:10
+      4    0.1%    8.9%  LazyCompile: *scanLine C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:815:22
+      2    0.0%    4.4%  LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+      1    0.0%    2.2%  RegExp: ^[!#$%&'*+\-.^_`|~0-9A-Za-z]+$
+      1    0.0%    2.2%  RegExp: [&<>'"]
+      1    0.0%    2.2%  RegExp: [ \t]*<%_
+      1    0.0%    2.2%  RegExp: ; *([!#$%&'*+.^_`|~0-9A-Za-z-]+) *= *("(?:[\u000b\u0020\u0021\u0023-\u005b\u005d-\u007e\u0080-\u00ff]|\\[\u000b\u0020-\u00ff])*"|[!#$%&'*+.^_`|~0-9A-Za-z-]+) *
+      1    0.0%    2.2%  LazyCompile: *stringifyFnReplacer C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\safe-stable-stringify\index.js:230:32
+      1    0.0%    2.2%  LazyCompile: *strEscape node:internal/util/inspect:465:19
+      1    0.0%    2.2%  LazyCompile: *readPackageScope node:internal/modules/cjs/loader:321:26
+      1    0.0%    2.2%  LazyCompile: *parseTemplateText C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:761:31
+      1    0.0%    2.2%  LazyCompile: *normalize node:path:304:12
+      1    0.0%    2.2%  LazyCompile: *nextTick node:internal/process/task_queues:104:18
+      1    0.0%    2.2%  LazyCompile: *dirname node:path:653:10
+      1    0.0%    2.2%  LazyCompile: *compileFunction node:vm:308:25
+      1    0.0%    2.2%  LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    0.0%    2.2%  LazyCompile: *Module._findPath node:internal/modules/cjs/loader:494:28
+      1    0.0%    2.2%  LazyCompile: *<anonymous> node:internal/validators:72:3
+      1    0.0%    2.2%  LazyCompile: *<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:742:32
+      1    0.0%    2.2%  Function: ^writevGeneric node:internal/stream_base_commons:126:23
+      1    0.0%    2.2%  Function: ^tryRender C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\application.js:655:19
+      1    0.0%    2.2%  Function: ^stringToFlags node:internal/fs/utils:555:23
+      1    0.0%    2.2%  Function: ^set C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\application.js:359:23
+      1    0.0%    2.2%  Function: ^readFileSync node:fs:450:22
+      1    0.0%    2.2%  Function: ^onwrite node:internal/streams/writable:425:17
+      1    0.0%    2.2%  Function: ^normalizeEncoding node:internal/util:160:27
+      1    0.0%    2.2%  Function: ^log C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\winston\lib\winston\transports\console.js:44:6
+      1    0.0%    2.2%  Function: ^hasOwn C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\utils.js:29:23
+      1    0.0%    2.2%  Function: ^getColorDepth node:internal/tty:106:23
+      1    0.0%    2.2%  Function: ^generateSource C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:721:28
+      1    0.0%    2.2%  Function: ^_write node:internal/streams/writable:283:16
+      1    0.0%    2.2%  Function: ^_unrefTimer node:net:417:52
+      1    0.0%    2.2%  Function: ^WritableState node:internal/streams/writable:77:23
+      1    0.0%    2.2%  Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1    0.0%    2.2%  Function: ^<anonymous> node:internal/console/constructor:338:10
 
  [C++]:
    ticks  total  nonlib   name
 
  [Summary]:
    ticks  total  nonlib   name
-     37    0.9%  100.0%  JavaScript
+     45    1.0%  100.0%  JavaScript
       0    0.0%    0.0%  C++
-     64    1.6%  173.0%  GC
-   3983   99.1%          Shared libraries
+    148    3.3%  328.9%  GC
+   4451   99.0%          Shared libraries
 
  [C++ entry points]:
    ticks    cpp   total   name
@@ -52,290 +66,331 @@ Statistical profiling result from con_clg-v8.log, (4020 ticks, 0 unaccounted, 0 
   Callers occupying less than 1.0% are not shown.
 
    ticks parent  name
-   3007   74.8%  C:\WINDOWS\SYSTEM32\ntdll.dll
-     38    1.3%    C:\Program Files\nodejs\node.exe
-      1    2.6%      LazyCompile: ~setStreamTimeout node:internal/stream_base_commons:254:26
-      1  100.0%        LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\socket.js:160:24
-      1  100.0%          C:\Program Files\nodejs\node.exe
-      1  100.0%            LazyCompile: ~_RedisSocket_createSocket C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\socket.js:159:66
-      1    2.6%      LazyCompile: ~realpathSync node:fs:2408:22
-      1  100.0%        LazyCompile: ~toRealPath node:internal/modules/cjs/loader:393:20
-      1  100.0%          LazyCompile: ~Module._findPath node:internal/modules/cjs/loader:494:28
-      1  100.0%            LazyCompile: ~resolveMainPath node:internal/modules/run_main:11:25
-      1    2.6%      LazyCompile: ~pathtoRegexp C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\path-to-regexp\index.js:28:22
-      1  100.0%        LazyCompile: ~Layer C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:33:15
-      1  100.0%          LazyCompile: ~Layer C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:33:15
-      1  100.0%            LazyCompile: ~Route.<computed> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\route.js:202:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ur\address\index.js:1:368
-      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ur\address\index.js:1:1
+   3186   70.9%  C:\WINDOWS\SYSTEM32\ntdll.dll
+     50    1.6%    C:\Program Files\nodejs\node.exe
+      7   14.0%      C:\Program Files\nodejs\node.exe
+      1   14.3%        LazyCompile: ~resolvePackageTargetString node:internal/modules/esm/resolve:474:36
+      1  100.0%          LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:528:30
+      1  100.0%            LazyCompile: ~resolvePackageTarget node:internal/modules/esm/resolve:528:30
+      1   14.3%        LazyCompile: ~p C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\modules\image\providers\lorempicsum.js:1:215
+      1  100.0%          LazyCompile: ~c C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\modules\image\providers\lorempicsum.js:1:388
+      1  100.0%            Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\modules\image\providers\lorempicsum.js:1:1
+      1   14.3%        Function: ^stat node:internal/modules/cjs/loader:151:14
+      1  100.0%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
+      1  100.0%            LazyCompile: *Module._findPath node:internal/modules/cjs/loader:494:28
+      1   14.3%        Function: ^getOwn node:internal/bootstrap/loaders:180:16
+      1  100.0%          Function: ^syncExports node:internal/bootstrap/loaders:287:14
+      1  100.0%            Function: ^<anonymous> node:internal/bootstrap/loaders:273:15
+      1   14.3%        Function: ^cpus node:os:133:14
+      1  100.0%          Function: ^infoRouter C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\routes\infoRouter.js:4:20
+      1  100.0%            LazyCompile: *handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
+      1   14.3%        Function: ^compileFunction node:vm:308:25
+      1  100.0%          Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
+      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1   14.3%        Function: ^FastBuffer node:internal/buffer:958:14
+      1  100.0%          Function: ^createUnsafeBuffer node:internal/buffer:1059:28
+      1  100.0%            Function: ^allocate node:buffer:397:18
+      2    4.0%      Function: ^realpathSync node:fs:2408:22
+      2  100.0%        Function: ^toRealPath node:internal/modules/cjs/loader:393:20
+      2  100.0%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
+      1   50.0%            LazyCompile: *Module._findPath node:internal/modules/cjs/loader:494:28
+      1   50.0%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+      1    2.0%      LazyCompile: ~unenroll node:timers:78:18
+      1  100.0%        LazyCompile: ~clearTimeout node:timers:184:22
+      1  100.0%          LazyCompile: ~processWaitQueue C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\sdam\topology.js:535:26
+      1  100.0%            LazyCompile: ~serverUpdateHandler C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\sdam\topology.js:321:24
+      1    2.0%      LazyCompile: ~u C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\pt_PT\cell_phone\index.js:1:533
+      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\pt_PT\cell_phone\index.js:1:1
       1  100.0%          LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
       1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\uk\address\city_prefix.js:1:324
-      1  100.0%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\uk\address\index.js:1:368
-      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\uk\address\index.js:1:1
-      1  100.0%            LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\sk\name\male_last_name.js:1:324
-      1  100.0%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\sk\name\index.js:1:368
-      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\sk\name\index.js:1:1
-      1  100.0%            LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\mk\name\index.js:1:368
-      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\mk\name\index.js:1:1
+      1    2.0%      LazyCompile: ~setOption C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\connection_string.js:406:19
+      1  100.0%        LazyCompile: ~parseOptions C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\connection_string.js:204:22
+      1  100.0%          LazyCompile: ~MongoClient C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\mongo_client.js:63:16
+      1  100.0%            LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongoose\lib\connection.js:798:31
+      1    2.0%      LazyCompile: ~randomBytes node:internal/crypto/random:90:21
+      1  100.0%        LazyCompile: ~randomBytesSync C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\random-bytes\index.js:72:25
+      1  100.0%          LazyCompile: ~uidSync C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\uid-safe\index.js:75:18
+      1  100.0%            LazyCompile: ~generateSessionId C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express-session\index.js:518:27
+      1    2.0%      LazyCompile: ~listOnTimeout node:internal/timers:505:25
+      1  100.0%        LazyCompile: ~processTimers node:internal/timers:485:25
+      1    2.0%      LazyCompile: ~insert node:internal/timers:350:16
+      1  100.0%        LazyCompile: ~setUnrefTimeout node:internal/timers:372:25
+      1  100.0%          LazyCompile: ~setStreamTimeout node:internal/stream_base_commons:254:26
+      1  100.0%            LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\socket.js:160:24
+      1    2.0%      LazyCompile: ~i C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\mk\company\name_patterns.js:1:388
+      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\mk\company\name_patterns.js:1:1
       1  100.0%          LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
       1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\mk\date\month.js:1:324
-      1  100.0%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\mk\date\index.js:1:368
-      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\mk\date\index.js:1:1
+      1    2.0%      LazyCompile: ~getPriority C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\negotiator\lib\encoding.js:149:53
+      1  100.0%        C:\Program Files\nodejs\node.exe
+      1  100.0%          LazyCompile: ~preferredEncodings C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\negotiator\lib\encoding.js:138:28
+      1  100.0%            LazyCompile: ~encodings C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\negotiator\index.js:52:52
+      1    2.0%      LazyCompile: ~getEncodingOps node:buffer:678:24
+      1  100.0%        Function: ^toString node:buffer:782:46
+      1  100.0%          Function: ^readFileSync node:fs:450:22
+      1  100.0%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1    2.0%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ru\name\index.js:1:368
+      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ru\name\index.js:1:1
+      1  100.0%          LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1    2.0%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ru\address\country.js:1:324
+      1  100.0%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ru\address\index.js:1:368
+      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ru\address\index.js:1:1
       1  100.0%            LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\hu\internet\index.js:1:368
-      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\hu\internet\index.js:1:1
+      1    2.0%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fi\name\index.js:1:368
+      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fi\name\index.js:1:1
       1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
       1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fr_CH\animal\cow.js:1:324
-      1  100.0%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fr_CH\animal\index.js:1:368
-      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fr_CH\animal\index.js:1:1
+      1    2.0%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en\address\state_abbr.js:1:324
+      1  100.0%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en\address\index.js:1:368
+      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en\address\index.js:1:1
       1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_IND\address\state.js:1:324
-      1  100.0%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_IND\address\index.js:1:368
-      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_IND\address\index.js:1:1
-      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_GB\address\index.js:1:368
-      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_GB\address\index.js:1:1
+      1    2.0%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\af_ZA\name\index.js:1:368
+      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\af_ZA\name\index.js:1:1
       1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
       1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1    2.6%      LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en\internet\index.js:1:368
-      1  100.0%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en\internet\index.js:1:1
-      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1    2.6%      LazyCompile: ~createCollection C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\db.js:153:21
-      1  100.0%        LazyCompile: ~createCollection C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongoose\lib\connection.js:400:82
-      1  100.0%          LazyCompile: ~Connection.onOpen C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongoose\lib\connection.js:636:39
-      1  100.0%            LazyCompile: ~_setClient C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongoose\lib\connection.js:858:20
-      1    2.6%      LazyCompile: ~a C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\hr\name\index.js:1:259
-      1  100.0%        LazyCompile: ~i C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\hr\name\index.js:1:432
-      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\hr\name\index.js:1:1
+      1    2.0%      LazyCompile: ~extend C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\index.js:95:18
+      1  100.0%        LazyCompile: ~create C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\index.js:110:18
+      1  100.0%          LazyCompile: ~createClient C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\redis\dist\index.js:37:22
+      1  100.0%            Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\server.js:1:1
+      1    2.0%      LazyCompile: ~contentType C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\response.js:619:32
+      1  100.0%        LazyCompile: ~send C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\response.js:111:25
+      1  100.0%          LazyCompile: ~done C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\response.js:1033:27
+      1  100.0%            LazyCompile: ~tryHandleCache C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:254:24
+      1    2.0%      LazyCompile: ~_RedisClient_tick C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\index.js:434:50
+      1  100.0%        LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\index.js:359:22
+      1  100.0%          LazyCompile: ~emit node:events:340:44
+      1  100.0%            LazyCompile: ~_RedisSocket_connect C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\socket.js:128:62
+      1    2.0%      LazyCompile: ~Writable.uncork node:internal/streams/writable:341:37
+      1  100.0%        LazyCompile: ~end node:_http_outgoing:833:45
+      1  100.0%          LazyCompile: ~end C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\compression\index.js:92:28
+      1  100.0%            LazyCompile: ~end C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express-session\index.js:250:27
+      1    2.0%      LazyCompile: *readPackageScope node:internal/modules/cjs/loader:321:26
+      1  100.0%        Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%          Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> node:internal/fs/rimraf:1:1
+      1  100.0%        LazyCompile: ~compileForInternalLoader node:internal/bootstrap/loaders:299:27
+      1  100.0%          LazyCompile: ~nativeModuleRequire node:internal/bootstrap/loaders:332:29
+      1  100.0%            Function: ~<anonymous> node:internal/fs/promises:1:1
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\async\internal\eachOfLimit.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@redis\client\dist\lib\client\multi-command.js:1:1
+      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ro\cell_phone\index.js:1:1
+      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\nl_BE\phone_number\index.js:1:1
+      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\nl_BE\address\postcode.js:1:1
+      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\hy\index.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fr\internet\index.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_ZA\phone_number\index.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_ZA\company\suffix.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_ZA\address\default_country.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_GH\company\name_patterns.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_GB\address\postcode.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    2.0%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_AU_ocker\phone_number\index.js:1:1
+      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      1    2.0%      Function: ~<anonymous> :1:20
+      1  100.0%        LazyCompile: ~anonymous C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:695:59
+      1  100.0%          LazyCompile: ~tryHandleCache C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:254:24
+      1  100.0%            LazyCompile: ~exports.renderFile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:441:31
+      1    2.0%      Function: ^onHeaders C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\on-headers\index.js:56:20
+      1  100.0%        Function: ^session C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express-session\index.js:179:26
+      1  100.0%          Function: ^handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
+      1  100.0%            Function: ^trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      1    2.0%      Function: ^infoRouter C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\routes\infoRouter.js:4:20
+      1  100.0%        LazyCompile: *trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      1  100.0%          LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+      1  100.0%            Function: ^<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\server.js:141:9
+      1    2.0%      Function: ^getHighWaterMark node:internal/streams/state:19:26
+      1  100.0%        Function: ^ReadableState node:internal/streams/readable:78:23
+      1  100.0%          Function: ^Readable node:internal/streams/readable:181:18
+      1  100.0%            Function: ^Duplex node:internal/streams/duplex:52:16
+      1    2.0%      Function: ^get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fr\index.js:1:368
+      1  100.0%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\index.js:1:376
+      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\index.js:1:1
       1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1    2.6%      LazyCompile: ~_write node:internal/streams/writable:283:16
-      1  100.0%        LazyCompile: ~Writable.write node:internal/streams/writable:333:36
-      1  100.0%          LazyCompile: ~value node:internal/console/constructor:257:20
-      1  100.0%            LazyCompile: ~log node:internal/console/constructor:358:6
-      1    2.6%      LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongoose\lib\utils.js:472:18
-      1  100.0%        LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongoose\lib\helpers\promiseOrCallback.js:11:25
-      1  100.0%          LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\utils.js:357:13
-      1  100.0%            LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\operations\execute_operation.js:71:47
-      1    2.6%      LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\sdam\monitor.js:177:73
-      1  100.0%        Function: ^onMessage C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\cmap\connection.js:156:14
-      1  100.0%          Function: ^<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\cmap\connection.js:60:44
-      1  100.0%            LazyCompile: *emit node:events:340:44
-      1    2.6%      LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\cmap\connect.js:88:85
-      1  100.0%        LazyCompile: ~onMessage C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\cmap\connection.js:156:14
-      1  100.0%          LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\cmap\connection.js:60:44
-      1  100.0%            Function: ^emit node:events:340:44
-      1    2.6%      LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\cmap\auth\scram.js:152:83
-      1  100.0%        LazyCompile: ~onMessage C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\cmap\connection.js:156:14
-      1  100.0%          LazyCompile: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\cmap\connection.js:60:44
-      1  100.0%            Function: ^emit node:events:340:44
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\vi\phone_number\index.js:1:1
-      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ur\name\prefix.js:1:1
-      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ur\lorem\index.js:1:1
-      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\sk\company\descriptor.js:1:1
-      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ru\hacker\verb.js:1:1
-      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\nl_BE\company\suffix.js:1:1
-      1  100.0%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\hr\address\street_name.js:1:1
-      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fr_CH\address\street_prefix.js:1:1
-      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fr_CH\address\building_number.js:1:1
-      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\fi\index.js:1:1
-      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en_GB\address\index.js:1:1
-      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en\color\space.js:1:1
-      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\en\animal\snake.js:1:1
-      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-      1    2.6%      Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\ar\name\female_first_name.js:1:1
-      1  100.0%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-      1    2.6%      Function: ^hasOwn C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\utils.js:29:23
-      1  100.0%        Function: ^exports.shallowCopyFromList C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\utils.js:145:40
-      1  100.0%          Function: ^exports.renderFile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:441:31
-      1  100.0%            Function: ^render C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\view.js:133:40
-      1    2.6%      Function: ^handleErrorFromBinding node:internal/fs/utils:340:32
-      1  100.0%        Function: ^readSync node:fs:684:18
-      1  100.0%          Function: ^tryReadSync node:fs:429:21
-      1  100.0%            Function: ^readFileSync node:fs:450:22
-      1    2.6%      Function: ^decode C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\send\index.js:997:17
+      1    2.0%      Function: ^decode C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\send\index.js:997:17
       1  100.0%        Function: ^pipe C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\send\index.js:506:43
       1  100.0%          Function: ^serveStatic C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\serve-static\index.js:72:31
       1  100.0%            LazyCompile: *trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
-      1    2.6%      C:\Program Files\nodejs\node.exe
-      1  100.0%        Function: ^stat node:internal/modules/cjs/loader:151:14
-      1  100.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
-      1  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
-
-    974   24.2%  C:\Program Files\nodejs\node.exe
-    720   73.9%    C:\Program Files\nodejs\node.exe
-    172   23.9%      Function: ^handleWriteReq node:internal/stream_base_commons:45:24
-    172  100.0%        Function: ^writeGeneric node:internal/stream_base_commons:151:22
-    172  100.0%          Function: ^Socket._writeGeneric node:net:769:42
-    172  100.0%            Function: ^Socket._write node:net:806:35
-     99   13.8%      Function: ^compileFunction node:vm:308:25
-     99  100.0%        Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
-     87   87.9%          Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-     87  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-     12   12.1%          LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-     12  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-     46    6.4%      Function: ^writevGeneric node:internal/stream_base_commons:126:23
-     46  100.0%        Function: ^Socket._writeGeneric node:net:769:42
-     46  100.0%          Function: ^Socket._writev node:net:801:36
-     46  100.0%            Function: ^doWrite node:internal/streams/writable:398:17
-     41    5.7%      Function: ^realpathSync node:fs:2408:22
-     40   97.6%        Function: ^toRealPath node:internal/modules/cjs/loader:393:20
-     40  100.0%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
-     23   57.5%            LazyCompile: *Module._findPath node:internal/modules/cjs/loader:494:28
-     16   40.0%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
-      1    2.5%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
-      1    2.4%        LazyCompile: ~toRealPath node:internal/modules/cjs/loader:393:20
-      1  100.0%          LazyCompile: ~tryFile node:internal/modules/cjs/loader:384:17
-      1  100.0%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
-     23    3.2%      Function: ^stat node:internal/modules/cjs/loader:151:14
-     13   56.5%        Function: ^tryFile node:internal/modules/cjs/loader:384:17
-     11   84.6%          Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
-     10   90.9%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
-      1    9.1%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
-      2   15.4%          LazyCompile: *Module._findPath node:internal/modules/cjs/loader:494:28
-      2  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
-     10   43.5%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
-     10  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
-     10  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
-     22    3.1%      C:\Program Files\nodejs\node.exe
-      8   36.4%        LazyCompile: *scanLine C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:815:22
-      5   62.5%          LazyCompile: *compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:571:21
-      5  100.0%            Function: ^compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:381:35
-      2   25.0%          LazyCompile: *<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:742:32
-      2  100.0%            C:\Program Files\nodejs\node.exe
-      1   12.5%          Function: ^<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:742:32
-      1  100.0%            C:\Program Files\nodejs\node.exe
-      4   18.2%        Function: ^createRegex C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:560:25
-      4  100.0%          Function: ^Template C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:509:18
-      4  100.0%            Function: ^compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:381:35
-      1    4.5%        LazyCompile: ~get C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\de_AT\address\index.js:1:368
-      1  100.0%          Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\@faker-js\faker\dist\cjs\locales\de_AT\address\index.js:1:1
-      1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1    4.5%        LazyCompile: *<anonymous> node:internal/fs/utils:668:38
-      1  100.0%          Function: ^<anonymous> node:internal/fs/utils:680:42
-      1  100.0%            Function: ^statSync node:fs:1528:18
-      1    4.5%        Function: ~<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongodb\lib\connection_string.js:1:1
-      1  100.0%          Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      1    4.5%        Function: ^scanLine C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:815:22
-      1  100.0%          Function: ^<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:742:32
-      1  100.0%            C:\Program Files\nodejs\node.exe
-      1    4.5%        Function: ^removeColors node:internal/util:76:22
-      1  100.0%          Function: ^isBelowBreakLength node:internal/util/inspect:1740:28
-      1  100.0%            Function: ^reduceToSingleString node:internal/util/inspect:1764:30
-      1    4.5%        Function: ^parseAcceptEncoding C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\negotiator\lib\encoding.js:31:29
-      1  100.0%          Function: ^preferredEncodings C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\negotiator\lib\encoding.js:138:28
-      1  100.0%            Function: ^encodings C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\negotiator\index.js:52:52
-      1    4.5%        Function: ^exports.escapeXML C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\utils.js:96:30
-      1  100.0%          Function: ^<anonymous> :1:20
-      1  100.0%            Function: ^anonymous C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:695:59
-      1    4.5%        Function: ^compileFunction node:vm:308:25
+      1    2.0%      Function: ^compression C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\compression\index.js:59:31
+      1  100.0%        LazyCompile: *trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      1  100.0%          LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+      1  100.0%            Function: ^expressInit C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\middleware\init.js:29:30
+      1    2.0%      Function: ^<anonymous> node:internal/validators:235:42
+      1  100.0%        Function: ^compileFunction node:vm:308:25
       1  100.0%          Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
       1  100.0%            Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      1    4.5%        Function: ^Socket.read node:net:639:33
-      1  100.0%          Function: ^Socket node:net:283:16
-      1  100.0%            Function: ^onconnection node:net:1548:22
-      1    4.5%        Function: ^<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:742:32
-      1  100.0%          C:\Program Files\nodejs\node.exe
-      1  100.0%            Function: ^generateSource C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:721:28
-     21    2.9%      Function: ^openSync node:fs:576:18
-     21  100.0%        Function: ^readFileSync node:fs:450:22
-     11   52.4%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      7   63.6%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-      4   36.4%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-     10   47.6%          Function: ^fileLoader C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:292:20
-     10  100.0%            Function: ^handleCache C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:210:21
-     15    2.1%      Function: ^existsSync node:fs:290:20
-     15  100.0%        Function: ^getIncludePath C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:156:24
-     15  100.0%          Function: ^includeFile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:309:21
-     15  100.0%            Function: ^include C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:696:30
-     14    1.9%      Function: ^statSync node:fs:1528:18
-     14  100.0%        Function: ^tryStat C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\view.js:174:17
-     14  100.0%          Function: ^resolve C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\view.js:146:42
-     14  100.0%            Function: ^lookup C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\view.js:104:40
-     14    1.9%      Function: ^cpus node:os:133:14
-     14  100.0%        Function: ^infoRouter C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\routes\infoRouter.js:4:20
-     10   71.4%          Function: ^handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
+     47    1.5%    LazyCompile: *writeOrBuffer node:internal/streams/writable:365:23
+     30   63.8%      Function: ^_write node:internal/streams/writable:283:16
+     30  100.0%        Function: ^Writable.write node:internal/streams/writable:333:36
+     15   50.0%          Function: ^value node:internal/console/constructor:257:20
+     15  100.0%            Function: ^log node:internal/console/constructor:358:6
+     15   50.0%          Function: ^log C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\winston\lib\winston\transports\console.js:44:6
+     15  100.0%            Function: ^_write C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\winston-transport\index.js:69:51
+     17   36.2%      LazyCompile: *_write node:internal/streams/writable:283:16
+     17  100.0%        Function: ^Writable.write node:internal/streams/writable:333:36
+      9   52.9%          Function: ^log C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\winston\lib\winston\transports\console.js:44:6
+      9  100.0%            Function: ^_write C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\winston-transport\index.js:69:51
+      8   47.1%          Function: ^value node:internal/console/constructor:257:20
+      8  100.0%            Function: ^log node:internal/console/constructor:358:6
+
+   1260   28.0%  C:\Program Files\nodejs\node.exe
+    902   71.6%    C:\Program Files\nodejs\node.exe
+    278   30.8%      Function: ^handleWriteReq node:internal/stream_base_commons:45:24
+    278  100.0%        Function: ^writeGeneric node:internal/stream_base_commons:151:22
+    278  100.0%          Function: ^Socket._writeGeneric node:net:769:42
+    278  100.0%            Function: ^Socket._write node:net:806:35
+    106   11.8%      Function: ^compileFunction node:vm:308:25
+    106  100.0%        Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
+     90   84.9%          Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+     88   97.8%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      2    2.2%            LazyCompile: ~Module._extensions..js node:internal/modules/cjs/loader:1110:37
+     16   15.1%          LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
+     16  100.0%            Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+     50    5.5%      Function: ^writevGeneric node:internal/stream_base_commons:126:23
+     50  100.0%        Function: ^Socket._writeGeneric node:net:769:42
+     50  100.0%          Function: ^Socket._writev node:net:801:36
+     49   98.0%            Function: ^doWrite node:internal/streams/writable:398:17
+      1    2.0%            LazyCompile: ~doWrite node:internal/streams/writable:398:17
+     43    4.8%      Function: ^realpathSync node:fs:2408:22
+     43  100.0%        Function: ^toRealPath node:internal/modules/cjs/loader:393:20
+     39   90.7%          Function: ^tryFile node:internal/modules/cjs/loader:384:17
+     23   59.0%            LazyCompile: *Module._findPath node:internal/modules/cjs/loader:494:28
+     15   38.5%            Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+      1    2.6%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
+      3    7.0%          Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      3  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1    2.3%          LazyCompile: *Module._findPath node:internal/modules/cjs/loader:494:28
+      1  100.0%            LazyCompile: *Module._resolveFilename node:internal/modules/cjs/loader:848:35
+     35    3.9%      Function: ^stat node:internal/modules/cjs/loader:151:14
+     20   57.1%        Function: ^tryFile node:internal/modules/cjs/loader:384:17
+     12   60.0%          Function: ^tryExtensions node:internal/modules/cjs/loader:400:23
+     11   91.7%            Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+      1    8.3%            Function: ^tryPackage node:internal/modules/cjs/loader:338:20
+      7   35.0%          LazyCompile: *Module._findPath node:internal/modules/cjs/loader:494:28
+      7  100.0%            Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+      1    5.0%          LazyCompile: ~finalizeEsmResolution node:internal/modules/cjs/loader:939:31
+      1  100.0%            Function: ^resolveExports node:internal/modules/cjs/loader:472:24
+     15   42.9%        Function: ^Module._findPath node:internal/modules/cjs/loader:494:28
+     15  100.0%          Function: ^Module._resolveFilename node:internal/modules/cjs/loader:848:35
+     15  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
+     34    3.8%      Function: ^existsSync node:fs:290:20
+     32   94.1%        Function: ^getIncludePath C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:156:24
+     32  100.0%          Function: ^includeFile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:309:21
+     32  100.0%            Function: ^include C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:696:30
+      2    5.9%        LazyCompile: ~getIncludePath C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:156:24
+      1   50.0%          LazyCompile: ~includeFile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:309:21
+      1  100.0%            LazyCompile: ~include C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:696:30
+      1   50.0%          Function: ^includeFile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:309:21
+      1  100.0%            Function: ^include C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:696:30
+     29    3.2%      Function: ^cpus node:os:133:14
+     27   93.1%        Function: ^infoRouter C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\routes\infoRouter.js:4:20
+     12   44.4%          LazyCompile: *trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+     12  100.0%            LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+     10   37.0%          Function: ^handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
      10  100.0%            Function: ^trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
-      4   28.6%          LazyCompile: *trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
-      4  100.0%            LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
-      8    1.1%      Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      7   87.5%        Function: ^nativeModuleRequire node:internal/bootstrap/loaders:332:29
-      1   14.3%          LazyCompile: ~lazyLoadStreams node:fs:2841:25
-      1  100.0%            LazyCompile: ~get ReadStream node:fs:2984:17
-      1   14.3%          Function: ~<anonymous> node:tty:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          Function: ~<anonymous> node:tls:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          Function: ~<anonymous> node:internal/child_process:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          Function: ~<anonymous> node:crypto:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          Function: ~<anonymous> node:assert:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   14.3%          Function: ~<anonymous> node:_http_common:1:1
-      1  100.0%            Function: ^compileForInternalLoader node:internal/bootstrap/loaders:299:27
-      1   12.5%        Function: ^compileForPublicLoader node:internal/bootstrap/loaders:246:25
-      1  100.0%          Function: ^loadNativeModule node:internal/modules/cjs/helpers:44:26
-      1  100.0%            Function: ^Module._load node:internal/modules/cjs/loader:757:24
-      8    1.1%      Function: ^closeSync node:fs:526:19
-      8  100.0%        Function: ^readFileSync node:fs:450:22
-      4   50.0%          Function: ^fileLoader C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:292:20
-      4  100.0%            Function: ^handleCache C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:210:21
-      4   50.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      2   50.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      2   50.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
-     23    2.4%    LazyCompile: *compileFunction node:vm:308:25
-     23  100.0%      Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
-     17   73.9%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
-     17  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-     17  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
-      6   26.1%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
-      6  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
-      6  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
+      5   18.5%          LazyCompile: *handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
+      5  100.0%            Function: ^trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      2    6.9%        LazyCompile: ~infoRouter C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\routes\infoRouter.js:4:20
+      2  100.0%          Function: ^handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
+      2  100.0%            Function: ^trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+     19    2.1%      Function: ^statSync node:fs:1528:18
+     19  100.0%        Function: ^tryStat C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\view.js:174:17
+     19  100.0%          Function: ^resolve C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\view.js:146:42
+     19  100.0%            Function: ^lookup C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\view.js:104:40
+     15    1.7%      C:\Program Files\nodejs\node.exe
+      3   20.0%        LazyCompile: *scanLine C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:815:22
+      2   66.7%          LazyCompile: *compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:571:21
+      2  100.0%            Function: ^compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:381:35
+      1   33.3%          Function: ^<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:742:32
+      1  100.0%            C:\Program Files\nodejs\node.exe
+      3   20.0%        Function: ^expressInit C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\middleware\init.js:29:30
+      2   66.7%          LazyCompile: *trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      2  100.0%            LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+      1   33.3%          LazyCompile: *handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
+      1  100.0%            Function: ^trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      2   13.3%        Function: ^header C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\response.js:777:29
+      2  100.0%          Function: ^contentType C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\response.js:619:32
+      2  100.0%            Function: ^send C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\response.js:111:25
+      1    6.7%        LazyCompile: ~toIdentifier C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\toidentifier\index.js:24:23
+      1  100.0%          LazyCompile: ~forEachCode C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\http-errors\index.js:259:38
+      1  100.0%            C:\Program Files\nodejs\node.exe
+      1    6.7%        LazyCompile: ~Kareem.filter C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\kareem\index.js:380:35
+      1  100.0%          LazyCompile: ~applyHooks C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongoose\lib\helpers\model\applyHooks.js:40:20
+      1  100.0%            LazyCompile: ~compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\mongoose\lib\model.js:4995:33
+      1    6.7%        LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      1  100.0%          Function: ^Module.require node:internal/modules/cjs/loader:997:36
+      1  100.0%            Function: ^require node:internal/modules/cjs/helpers:101:31
+      1    6.7%        LazyCompile: *<anonymous> node:internal/fs/utils:680:42
+      1  100.0%          Function: ^existsSync node:fs:290:20
+      1  100.0%            Function: ^getIncludePath C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:156:24
+      1    6.7%        LazyCompile: *<anonymous> node:internal/fs/utils:357:35
+      1  100.0%          Function: ^<anonymous> node:internal/fs/utils:668:38
+      1  100.0%            Function: ^<anonymous> node:internal/fs/utils:680:42
+      1    6.7%        Function: ^removeColors node:internal/util:76:22
+      1  100.0%          Function: ^isBelowBreakLength node:internal/util/inspect:1740:28
+      1  100.0%            Function: ^reduceToSingleString node:internal/util/inspect:1764:30
+      1    6.7%        Function: ^match C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:110:39
+      1  100.0%          Function: ^matchLayer C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:583:20
+      1  100.0%            Function: ^next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+     11    1.2%      LazyCompile: *compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:571:21
+     11  100.0%        Function: ^compile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:381:35
+     11  100.0%          Function: ^handleCache C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:210:21
+      6   54.5%            Function: ^tryHandleCache C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:254:24
+      5   45.5%            Function: ^includeFile C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\ejs\lib\ejs.js:309:21
+     10    1.1%      Function: ^infoRouter C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\routes\infoRouter.js:4:20
+      6   60.0%        LazyCompile: *trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      6  100.0%          LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+      6  100.0%            Function: ^<anonymous> C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\server.js:141:9
+      3   30.0%        LazyCompile: *handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
+      3  100.0%          Function: ^trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      3  100.0%            LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+      1   10.0%        Function: ^handle C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\layer.js:86:49
+      1  100.0%          Function: ^trim_prefix C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:293:23
+      1  100.0%            LazyCompile: *next C:\Users\natal\Documents\GitHub\Backend_MERN\desafio\node_modules\express\lib\router\index.js:177:16
+     31    2.5%    LazyCompile: *compileFunction node:vm:308:25
+     31  100.0%      Function: ^wrapSafe node:internal/modules/cjs/loader:1017:18
+     26   83.9%        LazyCompile: *Module._compile node:internal/modules/cjs/loader:1055:37
+     26  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+     26  100.0%            LazyCompile: *Module._load node:internal/modules/cjs/loader:757:24
+      5   16.1%        Function: ^Module._compile node:internal/modules/cjs/loader:1055:37
+      5  100.0%          Function: ^Module._extensions..js node:internal/modules/cjs/loader:1110:37
+      5  100.0%            Function: ^Module.load node:internal/modules/cjs/loader:969:33
 
